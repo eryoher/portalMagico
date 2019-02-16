@@ -1,0 +1,34 @@
+@import '../node_modules/compass-mixins/lib/compass';
+
+@font-face {
+    font-family: "QuicksandR";
+    src: url('./fonts/Quicksand/Quicksand-Regular.otf');
+}
+
+@font-face {
+    font-family: "MyriadProRegular";
+    src: url('./fonts/myriadpro/Myriad Pro Regular.ttf');
+}
+
+@mixin QuickSandRegular($size) {
+    font-size: $size;
+    font-family: QuicksandR;
+}
+
+@mixin MyriadRegular($size) {
+    font-size: $size;
+    font-family: MyriadProRegular;
+}
+
+@mixin backgroundImage() {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+$width-page:1200px;
+$height-footer-page:185px;
+$height-content-page : 800px;
+$min-page-md:676px;
+$min-page-width-md: max-width 767px;
+
+$blue:#44bccc;

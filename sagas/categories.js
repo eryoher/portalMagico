@@ -12,8 +12,6 @@ import { getCategoriesSuccess } from '../actions/Categories';
 
 
 function* getCategoriesRequest() {
-    console.log('saga');
-    
     try {
         const response = yield call(getCategories);
         yield put( getCategoriesSuccess(response) );

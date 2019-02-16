@@ -1,0 +1,356 @@
+@import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import '../node_modules/compass-mixins/lib/compass';
+@import 'functions';
+
+
+body{
+    border: 1px solid red;
+    max-width: $width-page;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px auto;
+
+    .color-blue{
+        color:$blue;
+    }
+
+    .text-bold{
+        font-weight: bold;
+    }
+
+    .promotions-content{
+        .title{
+            @include MyriadRegular(36pt);    
+            width: auto;
+        }
+    }
+
+    .presentation-mode{
+        padding-top: 3%;
+        .carousel{
+            .control-dots{
+                .dot{
+                    width: 30px;
+                    height: 30px;                                            
+                    border: 3px solid #fff;
+                    background: none;
+                    opacity: 1;
+
+                }
+                .selected{
+                    opacity: 1;
+                    background: #fff;
+                }   
+                
+            }
+        }
+        .carousel-slider{
+            margin: 0px auto;
+        }
+        .conten-slide{
+            .my-slide-content{
+                background-repeat: no-repeat;
+                background-size: cover;
+                min-height: 412px;
+                width: 100%;
+            }
+        }
+    }    
+    
+    .content-body{
+        min-height: 800px;
+    }        
+
+    .projects-content{
+        .donaciones-content{
+            .vertical-divider{
+                border-bottom: 3px solid $blue;            
+                margin-left: 0px;
+                height: 1px;
+                margin-bottom: 2%;
+                width: 40%;
+            }
+        }
+
+        .proyectos-productivos{
+            .vertical-divider{                
+                width: 64%;
+                margin-left: 0px;
+            }
+        }
+
+        .title{
+            @include MyriadRegular(36pt);    
+            width: auto;
+        }
+        .vertical-divider{
+            border-bottom: 3px solid $blue;            
+            margin: 0px auto;
+            height: 1px;
+            margin-bottom: 2%;
+            width: 38%;
+        }
+
+        .list-videos-projects{
+            padding: 15px;
+            background-color: #e8baa8;
+        }
+        
+    }
+
+    .donation-container{
+        .presentation-mode{
+            .carousel{
+                .control-dots{
+                    text-align: right;
+                    padding-right: 15%;
+                }
+            }
+            
+            .conten-slide{
+                .my-slide-content{
+                    .margen-slogan{
+                        padding-bottom: 10%;
+                    }
+                    .slogan-content{                            
+                        width: 50%;
+                        background-color: rgba(241, 241, 241, 0.7);
+                        text-align: left;
+                        padding-left: 5%;
+                        .slogan{
+                            .purchased{
+                                @include QuickSandRegular(24pt);    
+                                font-weight: bold;
+                            }
+                            .valor{
+                                @include MyriadRegular(36pt);    
+                                color:#fff;
+                                opacity: 1;
+                            }
+                            .deal{
+                                @include MyriadRegular(16pt);    
+                                color:#fff;
+                                background-color:#1818d2;
+                                height: 35px;                                    
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .header-container{
+        .top-header{                
+            background-repeat: repeat-x;
+            height: 46px;
+            background-size: cover;
+            
+        }
+
+        min-height: 128px;
+        background-color: #fff;            
+        
+        @include breakpoint(max-width 1166px) {
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
+        .navbar-brand {
+            @include breakpoint(max-width 360px) {
+                width: 50%;
+            }
+
+            .logo-header{
+                @include breakpoint(max-width 360px) {
+                    width: 125%;
+                }
+            }
+        }
+        .menu-margen{            
+            border-bottom: 1px solid #44bccc;  
+            padding-bottom: 2px;
+            .menu-container{
+                background-color:rgb(221, 242, 245);               
+                .menu{
+                    @include QuickSandRegular(15pt);
+                    vertical-align: middle;
+                    color: #000;
+                    font-weight: bold;
+                    margin-left: 10px;
+                    margin-right: 10px;                    
+                    a{
+                        text-decoration: none;
+                        color: #000;
+                    }
+                }
+                .left-divider{
+                    border-left: 1px solid red;
+                    padding-left: 8px;
+                    height: .9em;
+                }
+            }
+        }
+
+        .social-media{
+            padding-left: 1%;
+            margin-bottom: 8%;
+            @include breakpoint(max-width 1000px) {
+                border: 0px;
+                padding-left: 0px;
+            }
+            .icon {
+                background-repeat: no-repeat;
+                background-position: left;
+                background-size: 30px;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+    .homepage-container{
+        .about-us{
+            padding-top: 2%;                
+            .title{
+                color: #414243;
+                @include MyriadRegular(32pt);
+                font-weight: bold;                    
+                border-bottom: solid 2px $blue;
+                width: auto;
+                margin: 0px auto;                    
+                display: -webkit-inline-box;
+            }
+            .content{
+                @include MyriadRegular(11pt);
+                padding: 0 20%;
+                padding-top: 3%;                
+            }
+        }
+
+        .campaign-content{
+            padding-top: 3%;
+            @include MyriadRegular(11pt);
+            ol{               
+                counter-reset: my-awesome-counter;    
+                list-style: none;
+                li{
+                    counter-increment: my-awesome-counter;
+                    padding-bottom: 25px;                        
+                    &:before{
+                        content: counter(my-awesome-counter) ". ";
+                        color:$blue;
+                    }
+                }                   
+            }
+            .title{
+                @include MyriadRegular(32pt);
+                margin-bottom: 3%;
+                padding-left: 25px;
+            }
+        }            
+
+    }
+    .nosotros-container{
+        //background-image: url('../img/background_content.png');
+        background-repeat: repeat;
+        min-height: $height-content-page;
+        .nosotros-fundacion{
+            width: auto;
+            min-height: 300px;
+            margin-top: 33%;
+            @include breakpoint($min-page-width-md) {
+                margin-top: 10%;
+            }
+
+            @include backgroundImage();
+            .year{
+                margin-top:38%;
+                height: 100%;
+                @include QuickSandRegular(20pt);
+                color: #fff;
+            }
+
+        }
+        .history{
+            @include QuickSandRegular(15pt);
+            .italic{
+                @include QuickSandRegular(15pt);
+
+            }
+        }
+        .btn-rhin{
+            background-color: #b90b25ff;
+            color: #fff;
+            @include QuickSandRegular(18pt);
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        .menu-productos{
+            @include backgroundImage();
+            width: 100%;
+            height: 661px;
+            padding: 18px;
+            margin-top: 10%;
+            @include breakpoint($min-page-width-md) {
+                height: 400px;
+
+            }
+            .content-product{
+                height: 100%;
+                border: solid 1px white;
+                overflow: auto;
+                .item-product{
+                    display: block;
+                    border: solid 1px #b90b25ff;
+                    color: #fff;
+                    background-color: #b90b25ff;
+                    @include QuickSandRegular(25pt);
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-top: 10px;
+
+                }
+            }
+        }
+    }
+
+    .footer-container{
+        min-height: $height-footer-page;
+        line-height: 0.2;
+        @include breakpoint($min-page-width-md) {
+            text-align: center !important;
+        }
+        .logo{
+            text-align: right;
+            width: 212px;
+            @include breakpoint($min-page-width-md) {
+                text-align: center !important;
+            }
+
+        }
+        .address{
+            @include QuickSandRegular(10pt);
+        }
+        .message{
+            @include QuickSandRegular(9pt);
+            @include breakpoint(max-width 493px) {
+                line-height: 1;
+            }
+
+            line-height: 0.2;
+        }
+    }
+
+    .div-divider{
+        margin: 0 5px;
+        display: inline-block;
+        height: 1em;
+        vertical-align: middle;
+        position: relative;
+        top: 0.5em;
+        width: 2px;
+        background-color: #3896a2;
+    }
+}
+    
