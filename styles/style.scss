@@ -1,5 +1,7 @@
 @import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
 @import '../node_modules/compass-mixins/lib/compass';
+@import "~antd/dist/antd.css";   // import official less entry file
+
 @import 'functions';
 
 
@@ -8,7 +10,7 @@ body{
     max-width: $width-page;
     padding-left: 0px;
     padding-right: 0px;
-    margin: 0px auto;
+    margin: 0px auto !important;
 
     .color-blue{
         color:$blue;
@@ -20,8 +22,41 @@ body{
 
     .promotions-content{
         .title{
-            @include MyriadRegular(36pt);    
+            @include MyriadRegular(32pt);    
             width: auto;
+        }
+        .content{
+            .promotion-item{
+                @include backgroundImage;
+                padding: 15px;
+                margin: 15px;
+                height: 350px;
+                color:#fff;
+                .vertical-space{
+                    margin:15%;
+                }
+                .subcontent{
+                    width: 50%;
+                    background-color: rgba(241, 241, 241, 0.3);
+                    text-align: left;
+                    padding-left: 5%;
+                }
+
+                .sell-button{     
+                    position: absolute;
+                    bottom:10%;                                         
+                    text-align: center;
+                    left: auto;
+                    right: auto;
+                    width: 90%;
+                }
+            }
+            .description-item{
+                padding-left: 15px;
+                @include MyriadRegular(15pt);    
+                text-align: justify;
+
+            }
         }
     }
 

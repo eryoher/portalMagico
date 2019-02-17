@@ -20,6 +20,12 @@
     font-family: MyriadProRegular;
 }
 
+@mixin MyriadBold($size) {
+    font-size: $size;
+    font-family: MyriadProRegular;
+    font-weight: bold;
+}
+
 @mixin backgroundImage() {
     background-size: cover;
     background-repeat: no-repeat;

@@ -9,3 +9,7 @@ export const CLEAR_MESSAGE = 'clear_message';
 //Categories
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
+
+//Promotions
+export const GET_PROMOTIONS = 'GET_PROMOTIONS'
+export const GET_PROMOTIONS_SUCCESS = 'GET_PROMOTIONS_SUCCESS'

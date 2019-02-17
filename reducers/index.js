@@ -5,6 +5,7 @@ import campaignReducer from './campaigns'
 import projectsReducer from './projects';
 import ofertasReducer from './ofertas';
 import categoriesReducer from  './categories';
+import promotionsReducer from './promotions';
 
 const rootReducer = combineReducers({
     carousel: carouselReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     projects: projectsReducer,
     deals: ofertasReducer,
     categories: categoriesReducer,
+    promotions: promotionsReducer
 });
 
 export default rootReducer;
