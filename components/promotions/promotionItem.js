@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Row, Col, Button } from 'antd';
 
-export default class Promotions extends Component {  
+export default class PromotionItem extends Component {  
     render(){
         const { promotion } = this.props
         let imgUrl 
-        console.log(promotion);
         if( promotion.id % 2 == 0 ){
             imgUrl = 'http://localhost:3000/static/img/promotions/green_lantern.jpg'
         }else{

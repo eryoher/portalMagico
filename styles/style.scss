@@ -25,6 +25,21 @@ body{
             @include MyriadRegular(32pt);    
             width: auto;
         }
+
+        .list-categories{
+            padding: 5%;
+            .category-item{
+                margin: 0px auto;
+
+                .title{
+                    @include MyriadRegular(16pt);    
+                    font-weight: bold;
+                }
+                .icon{
+                    width: 75px
+                }
+            }
+        }
         .content{
             .promotion-item{
                 @include backgroundImage;

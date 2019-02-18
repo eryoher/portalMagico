@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getCategories, getPromotions }  from '../actions';
+import { getCategoriesWithProduct, getPromotions }  from '../actions';
 import { Row, Col } from 'antd';
 import PromotionItem from '../components/promotions/promotionItem'
+import CategoryItem from '../components/categories/categoryItem';
 
 class Promotions extends Component {    
 
     componentWillMount(){
-        this.props.getCategories()
+        this.props.getCategoriesWithProduct()
         this.props.getPromotions({
             page:1,
             pageSize:10
@@ -30,8 +31,33 @@ class Promotions extends Component {
         return rows;
     }
 
+    handleSelectCategory = (categoryId) => {
+        this.props.getPromotions({
+            categoryId:categoryId,
+            page:1,
+            pageSize:10
+        })
+    }
+
+    renderCategories(){       
+        let { categories } = this.props      
+        let rows = []        
+        console.log(categories);
+        
+        categories.data.forEach(category => {
+           rows.push(
+                <CategoryItem key={category.id}
+                    data = { category }
+                    onSelecteCategory = {  this.handleSelectCategory }
+                />
+           ) 
+        }); 
+
+        return rows;       
+    }
+
     render() {
-        const { search } = this.props
+        const { search, categories } = this.props
         return (
             <div className={'promotions-content'} >
                 <div className={'container'} >
@@ -42,6 +68,11 @@ class Promotions extends Component {
                                 <span className={'text-bold'} > te premia </span>
                             </div>
                         </Col>
+                        <Col span={24} className={"list-categories"} >
+                            { categories && this.renderCategories() }
+                        </Col>
+                    </Row>
+                    <Row>
                         <Col className={'content'}>
                             <Row>
                                 { search && this.renderPromotions() }
@@ -54,13 +85,14 @@ class Promotions extends Component {
     }
 }
 
-function mapStateToProps({ promotions }){
+function mapStateToProps({ promotions, categories }){
     const {search} = promotions
     return {
-        search
+        search,
+        categories : categories.categoriesCount
     }
 }
 
 
 
-export default connect (mapStateToProps,{getCategories, getPromotions})(Promotions);
+export default connect (mapStateToProps,{getCategoriesWithProduct, getPromotions})(Promotions);
