@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import authReducer from './auth'
 import carouselReducer from './carousel';
 import productsReducer from './products';
 import campaignReducer from './campaigns'
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     projects: projectsReducer,
     deals: ofertasReducer,
     categories: categoriesReducer,
-    promotions: promotionsReducer
+    promotions: promotionsReducer,
+    auth:authReducer
 });
 
 export default rootReducer;

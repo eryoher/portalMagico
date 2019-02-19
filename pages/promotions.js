@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getCategoriesWithProduct, getPromotions }  from '../actions';
-import { Row, Col } from 'antd';
+import { Row, Col, Modal } from 'antd';
 import PromotionItem from '../components/promotions/promotionItem'
 import CategoryItem from '../components/categories/categoryItem';
+import Login from '../components/common/login'
 
 class Promotions extends Component {    
+
+    constructor(props){
+        super(props)
+        this.state = {
+            showLogin:false
+        }
+    }
 
     componentWillMount(){
         this.props.getCategoriesWithProduct()
@@ -42,7 +50,6 @@ class Promotions extends Component {
     renderCategories(){       
         let { categories } = this.props      
         let rows = []        
-        console.log(categories);
         
         categories.data.forEach(category => {
            rows.push(
@@ -56,6 +63,10 @@ class Promotions extends Component {
         return rows;       
     }
 
+    handleCancelLogin = () =>{
+        this.setState({showLogin:false})
+    }
+
     render() {
         const { search, categories } = this.props
         return (
@@ -66,6 +77,9 @@ class Promotions extends Component {
                             <div className={'title'} >
                                 <span className={'color-blue'} > Una marca </span>
                                 <span className={'text-bold'} > te premia </span>
+                            </div>
+                            <div>
+                               <a onClick={ () => this.setState({showLogin:true}) } > Login </a>
                             </div>
                         </Col>
                         <Col span={24} className={"list-categories"} >
@@ -78,6 +92,12 @@ class Promotions extends Component {
                                 { search && this.renderPromotions() }
                             </Row>
                         </Col>
+                    </Row>
+                    <Row>
+                        <Login 
+                            showLogin = { this.state.showLogin }
+                            onCancelLogin = { this.handleCancelLogin }
+                        />
                     </Row>
                 </div>
             </div>

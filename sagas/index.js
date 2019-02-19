@@ -1,12 +1,14 @@
 import { all } from 'redux-saga/effects';
-import categorySagas from './categories'
+import authSagas from './Auth'
+import categorySagas from './Categories'
 import promotionsSagas from './Promotions'
 
 
 export default function* rootSaga(getState) {
     yield all([
         categorySagas(),
-        promotionsSagas()
+        promotionsSagas(),
+        authSagas()
     ])
 }
   
