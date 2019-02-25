@@ -12,5 +12,5 @@ export const largeItemLayout = {
 }
 
 export const fullItemLayout = {    
-    wrapperCol: { span: 16 , offset:4 },
+    wrapperCol: { span: 20 , offset:2 },
 }

@@ -14,53 +14,60 @@ class CreateUser extends Component {
 
   render() {
 
-    const { error } = this.props
+    const UrlBgLogo = '../../static/img/bg_login_form.png'
+    const UrlLogo = '../../static/img/logo_login_form.png'
 
-    return (
-      <Layout>
-        <Content className="login-container">
-          <Content className="form-content">
-            <Row style={{ paddingTop: 15 }}>
-              <Col span={20} offset={2}>               
-                <Formik
-                    onSubmit={(values, actions) => {
-                        //this.props.addUser(values);
-                        actions.setSubmitting(false);
-                        console.log(values);
-                        
-                    }}
-                    validationSchema={Yup.object().shape({
-                        //username: Yup.string().required(t('validation-required', { field: t('username') })),
-                        //password: Yup.string().required(t('validation-required', { field: t('password') })),
-                    })}
-                    render={({ values, handleBlur, handleChange, errors, touched, isSubmitting, isValid, handleSubmit, setFieldValue, setFieldTouched }) => (
-                        <Form onSubmit={handleSubmit}>
-                            <Col {...formLayout}>
-                                <UserFormInput                          
-                                    {...{
-                                        values,
-                                        handleBlur,
-                                        handleChange,
-                                        errors,
-                                        touched,
-                                        isSubmitting,
-                                        handleSubmit,
-                                        setFieldValue,
-                                        setFieldTouched
-                                    }}
-                                />
-                            </Col>
+    return (      
+      <Content className="addUser-container">
+        <div className={'logo-login'} style={{backgroundImage: `url(${UrlBgLogo})`}} >
+          <img className={'logo-img'} src={UrlLogo} />
+          <div className={'title'} > CREAR PERFIL </div>
+        </div>
+        <Content className="form-content">
+          <Row style={{ paddingTop: 15 }}>
+            <Col span={20} offset={2}>               
+              <Formik
+                  onSubmit={(values, actions) => {
+                      this.props.addUser(values);
+                      actions.setSubmitting(false);
+                  }}
+                  validationSchema={Yup.object().shape({
+                      name: Yup.string().required('El nombre es requerido'),
+                      lastname: Yup.string().required('El apellido es requerido'),
+                      username: Yup.string().required('El usuario es requerido'),
+                      password: Yup.string().required('El password es requerido'),
+                      email:Yup.string().required('El E-mail es requerido'),
+                      repeatPassword: Yup.string().oneOf([Yup.ref('password')], 'La contraseñas no coinciden').required('El password es requerido'),
+                  })}
+                  render={({ values, handleBlur, handleChange, errors, touched, isSubmitting, isValid, handleSubmit, setFieldValue, setFieldTouched }) => (
+                      <Form onSubmit={handleSubmit}>
+                          <Col {...formLayout}>
+                              <UserFormInput                          
+                                  {...{
+                                      values,
+                                      handleBlur,
+                                      handleChange,
+                                      errors,
+                                      touched,
+                                      isSubmitting,
+                                      handleSubmit,
+                                      setFieldValue,
+                                      setFieldTouched
+                                  }}
+                              />
+                          </Col>
+                          <Col span={24} style={{textAlign:'center'}} >
                             <Button className="ant-btn login-form-button" htmlType="submit" disabled={!isValid || isSubmitting}>
-                                {'Enviar'}
+                                {'Registrarse'}
                             </Button>
-                        </Form>
-                    )}
-                />
-              </Col>
-            </Row>            
-          </Content>
+                          </Col>
+                      </Form>
+                  )}
+              />
+            </Col>
+          </Row>            
         </Content>
-      </Layout>
+      </Content>      
     )
   }
 }

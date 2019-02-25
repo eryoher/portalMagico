@@ -16,21 +16,15 @@ class LoginForm extends Component {
   render() {
 
     const { error } = this.props
-
-    return (
-      <Layout>
-        <Content className="login-container">
-          <Content className="form-content">
-            <Row>
-              <Col span={24} style={{ 'textAlign': 'center' }}>
-                
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24} style={{ 'textAlign': 'center', paddingTop: 15 }} className="title">
-                {'Login'}
-              </Col>
-            </Row>
+    const UrlBgLogo = '../../static/img/bg_login_form.png'
+    const UrlLogo = '../../static/img/logo_login_form.png'
+    return (      
+        <Content className="addUser-container">
+          <div className={'logo-login'} style={{backgroundImage: `url(${UrlBgLogo})`}} >
+            <img className={'logo-img'} src={UrlLogo} />
+            <div className={'title'} > INICIO DE SESION </div>
+          </div>
+          <Content className="form-content">            
             <Row style={{ paddingTop: 15 }}>
               <Col span={20} offset={2}>
                 {error &&
@@ -47,8 +41,8 @@ class LoginForm extends Component {
                         actions.setSubmitting(false);
                     }}
                     validationSchema={Yup.object().shape({
-                        //username: Yup.string().required(t('validation-required', { field: t('username') })),
-                        //password: Yup.string().required(t('validation-required', { field: t('password') })),
+                      username: Yup.string().required('El usuario es requerido'),
+                      password: Yup.string().required('El password es requerido'),
                     })}
                     render={({ values, handleBlur, handleChange, errors, touched, isSubmitting, isValid, handleSubmit }) => (
                         <Form onSubmit={handleSubmit}>
@@ -57,11 +51,12 @@ class LoginForm extends Component {
                                     id="username"
                                     type="text"
                                     name="username"
+                                    className={'input-form-login'}
                                     value={values.username}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder={'Usuario'}
+                                    //prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder={'Usuario *'}
                                 />
                                 {errors.username &&
                                     touched.username && <div className="ant-form-explain">{errors.username}</div>}
@@ -71,31 +66,31 @@ class LoginForm extends Component {
                                     id="password"
                                     type="password"
                                     name="password"
+                                    className={'input-form-login'}
                                     value={values.password}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder={'Password'}
+                                    //prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder={'Password *'}
                                 />
                                 {errors.password &&
                                     touched.password && <div className="ant-form-explain">{errors.password}</div>}
                             </FormItem>
-                            <Button className="ant-btn login-form-button" htmlType="submit" disabled={!isValid || isSubmitting}>
-                                {'Ingresar'}
-                            </Button>
-                            <Row style={{ paddingTop: 5, paddingBottom: 35 }}>
-                                { <Col span={12}>
-                                    <a className="login-form-action" href=""> {'Registrarse'} </a>
-                                </Col> }                            
-                            </Row>
+                            <Col span={24} style={{textAlign:'center', paddingTop:'5px'}} >
+                              <Button className="ant-btn login-form-button" htmlType="submit" disabled={!isValid || isSubmitting}>
+                                {'Iniciar'}
+                              </Button>
+                            </Col>                            
+                            <Col span={12} style={{ paddingTop: 5, paddingBottom: 15 }} >
+                                <a className="login-form-action" href=""> {'Registrarse'} </a>
+                            </Col>                            
                         </Form>
                     )}
                 />
               </Col>
             </Row>            
           </Content>
-        </Content>
-      </Layout>
+        </Content>      
     )
   }
 }

@@ -30,7 +30,8 @@ class UserFormInput extends Component {
                                 id="name"
                                 type="text"
                                 name="name"
-                                placeholder={'Nombre'}
+                                placeholder={'Nombre *'}
+                                className={'input-form-login'}
                                 value={values.name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -48,7 +49,8 @@ class UserFormInput extends Component {
                                 id="lastname"
                                 type="text"
                                 name="lastname"
-                                placeholder={'Apellido'}
+                                placeholder={'Apellido *'}
+                                className={'input-form-login'}
                                 value={values.lastname}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -66,7 +68,8 @@ class UserFormInput extends Component {
                                 id="username"
                                 type="text"
                                 name="username"
-                                placeholder={'Usuario'}
+                                placeholder={'Usuario *'}
+                                className={'input-form-login'}
                                 value={values.username}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -85,6 +88,7 @@ class UserFormInput extends Component {
                                 type="text"
                                 name="city"
                                 placeholder={'Ciudad'}
+                                className={'input-form-login'}
                                 value={values.city}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -103,6 +107,7 @@ class UserFormInput extends Component {
                                 type="text"
                                 name="phone"
                                 placeholder={'Telefono'}
+                                className={'input-form-login'}
                                 value={values.phone}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -120,7 +125,8 @@ class UserFormInput extends Component {
                                 id="email"
                                 type="email"
                                 name="email"
-                                placeholder={'E-mail'}
+                                placeholder={'E-mail *'}
+                                className={'input-form-login'}
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -138,7 +144,8 @@ class UserFormInput extends Component {
                                 id="password"
                                 type="password"
                                 name="password"
-                                placeholder={'Contraseña'}
+                                placeholder={'Contraseña *'}
+                                className={'input-form-login'}
                                 value={values.password}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -156,7 +163,8 @@ class UserFormInput extends Component {
                                 id="repeatPassword"
                                 type="password"
                                 name="repeatPassword"
-                                placeholder={'Repita la contraseña'}
+                                placeholder={'Repita la contraseña *'}
+                                className={'input-form-login'}
                                 value={values.repeatPassword}
                                 onChange={handleChange}
                                 onBlur={handleBlur}

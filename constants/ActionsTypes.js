@@ -12,6 +12,10 @@ export const SIGNIN_USER_SUCCESS = 'signin_user_success';
 export const SIGNOUT_USER = 'signout_user';
 export const SIGNOUT_USER_SUCCESS = 'signout_user_success';
 
+//User
+export const ADD_USER = 'ADD_USER'
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS'
+
 //Categories
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'

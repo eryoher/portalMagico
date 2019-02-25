@@ -5,8 +5,7 @@
 @import 'functions';
 
 
-body{
-    border: 1px solid red;
+body{    
     max-width: $width-page;
     padding-left: 0px;
     padding-right: 0px;
@@ -18,6 +17,51 @@ body{
 
     .text-bold{
         font-weight: bold;
+    }
+
+    .ant-modal-body{
+        padding: 0px;
+        .addUser-container{
+            .logo-login{
+                height: 190px;
+                @include backgroundImage;
+                text-align: center;
+                margin-bottom: 110px;
+                .logo-img{
+                    width: 200px;
+                    padding-top: 50px;
+                }                
+                .title{
+                    color:#57abde;
+                    @include MyriadRegular(26pt);    
+
+                }
+            }
+
+            .form-content{
+                .input-form-login{
+                    @include MyriadRegular(14pt);    
+                    background-color: #ededed;
+                    box-shadow: 0px 6px 1px 1px #ccc;
+                    height: 44px;
+                    color: #000;
+                    border:1px solid #ededed;
+                }
+
+                .login-form-button{
+                    @include MyriadRegular(26pt);    
+                    background-color: #57abde;
+                    height: 60px;
+                    border-radius: 25px;
+                    color: #fff;
+                    width: 50%;
+                }
+                .ant-form-explain{
+                    padding-top: 8px;
+                }
+            }
+            
+        }
     }
 
     .promotions-content{
@@ -114,6 +158,9 @@ body{
 
     .projects-content{
         .donaciones-content{
+            .title{
+                padding-left: 0px;
+            }
             .vertical-divider{
                 border-bottom: 3px solid $blue;            
                 margin-left: 0px;
@@ -133,6 +180,7 @@ body{
         .title{
             @include MyriadRegular(36pt);    
             width: auto;
+            margin-left: 29%;
         }
         .vertical-divider{
             border-bottom: 3px solid $blue;            
@@ -142,9 +190,12 @@ body{
             width: 38%;
         }
 
-        .list-videos-projects{
-            padding: 15px;
+        .list-videos-projects{            
             background-color: #e8baa8;
+            margin-bottom: 15px;
+            div{
+                padding: 5px;
+            }
         }
         
     }
@@ -218,33 +269,30 @@ body{
                 }
             }
         }
-        .menu-margen{            
-            border-bottom: 1px solid #44bccc;  
-            padding-bottom: 2px;
-            .menu-container{
-                background-color:rgb(221, 242, 245);               
-                .menu{
-                    @include QuickSandRegular(15pt);
-                    vertical-align: middle;
+       
+        .menu-container{            
+            background-color:rgb(221, 242, 245);               
+            .ant-menu-item{
+                @include QuickSandRegular(15pt);
+                vertical-align: middle;
+                color: #000;
+                font-weight: bold;
+                padding-left: 5px;
+                padding-right: 5px;
+                a{
+                    text-decoration: none;
                     color: #000;
-                    font-weight: bold;
-                    margin-left: 10px;
-                    margin-right: 10px;                    
-                    a{
-                        text-decoration: none;
-                        color: #000;
-                    }
-                }
-                .left-divider{
-                    border-left: 1px solid red;
-                    padding-left: 8px;
-                    height: .9em;
                 }
             }
+            .left-divider{
+                border-left: 1px solid red;
+                padding-left: 8px;
+                height: .9em;
+            }
         }
-
+        
         .social-media{
-            padding-left: 1%;
+            padding-left: 5%;
             margin-bottom: 8%;
             @include breakpoint(max-width 1000px) {
                 border: 0px;
@@ -261,6 +309,20 @@ body{
         }
     }
     .homepage-container{
+        .ant-carousel .slick-slide {
+            .banner-img{
+                @include backgroundImage;
+                height: 412px;
+                width: 1012px;
+                margin: 0px auto;
+                img{
+                    margin: 0px auto;
+                }
+                
+            }
+            
+        }          
+        
         .about-us{
             padding-top: 2%;                
             .title{
@@ -270,29 +332,41 @@ body{
                 border-bottom: solid 2px $blue;
                 width: auto;
                 margin: 0px auto;                    
-                display: -webkit-inline-box;
+                display: -webkit-inline-box;      
+                margin-left: 35%;          
             }
             .content{
-                @include MyriadRegular(11pt);
+                @include MyriadRegular(13pt);
                 padding: 0 20%;
-                padding-top: 3%;                
+                padding-top: 3%;     
+                text-align: justify;           
             }
         }
 
         .campaign-content{
             padding-top: 3%;
             @include MyriadRegular(11pt);
-            ol{               
-                counter-reset: my-awesome-counter;    
-                list-style: none;
-                li{
-                    counter-increment: my-awesome-counter;
-                    padding-bottom: 25px;                        
-                    &:before{
-                        content: counter(my-awesome-counter) ". ";
-                        color:$blue;
-                    }
-                }                   
+            .numbers{
+                .content-ul{
+                    text-align: justify;
+                    margin: 2%;
+                }
+                ol{               
+                    counter-reset: my-awesome-counter;    
+                    list-style: none;
+                    li{
+                        counter-increment: my-awesome-counter;
+                        padding-bottom: 25px;                        
+                        &:before{
+                            content: counter(my-awesome-counter) ". ";
+                            color:$blue;
+                        }
+                        li{
+                            padding-left: 15%;
+                            list-style-type: square;
+                        }
+                    }                   
+                }
             }
             .title{
                 @include MyriadRegular(32pt);
@@ -399,7 +473,6 @@ body{
         height: 1em;
         vertical-align: middle;
         position: relative;
-        top: 0.5em;
         width: 2px;
         background-color: #3896a2;
     }

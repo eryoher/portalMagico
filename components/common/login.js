@@ -12,8 +12,8 @@ export default class Login extends Component {
                 onCancel = { this.props.onCancelLogin }
                 footer={[]}
             >            
-                {false&&<LoginForm />}
-                <CreateUser />
+                {<LoginForm />}
+                {false&&<CreateUser />}
             </Modal>
             
         )
