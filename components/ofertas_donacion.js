@@ -11,15 +11,7 @@ class OfertasDonacion extends Component {
         if (gallerie.length){
             return (
                 <Carousel
-                    showArrows={true}
-                    width = "1098px"
-                    autoPlay={true}
-                    interval={5000}
-                    infiniteLoop={true}
-                    showStatus={false}
-                    showArrows={false}
-                    showThumbs={false}
-                    dynamicHeight={true}
+                    autoPlay
                     className="presentation-mode"
                 >
                     {this.divgallerie(gallerie)}

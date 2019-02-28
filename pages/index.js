@@ -16,6 +16,7 @@ class HomePage extends Component {
       return (
           <Carousel            
             className="presentation-mode"
+            autoplay
           >
             {this.divgallerie(gallerie)}
           </Carousel>

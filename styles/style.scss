@@ -157,9 +157,11 @@ body{
     }        
 
     .projects-content{
-        .donaciones-content{
+        .donaciones-content{            
+            margin-top:30px;
             .title{
-                padding-left: 0px;
+                text-align: left;
+                margin-left: 0px;
             }
             .vertical-divider{
                 border-bottom: 3px solid $blue;            
@@ -168,11 +170,50 @@ body{
                 margin-bottom: 2%;
                 width: 40%;
             }
+
+            .presentation-mode{
+                padding-top:10px;            
+                
+                .conten-slide{
+                    .my-slide-content{
+                        .margen-slogan{
+                            padding-bottom: 10%;
+                        }
+                        .slogan-content{                            
+                            width: 50%;
+                            background-color: rgba(241, 241, 241, 0.7);
+                            text-align: left;
+                            padding-left: 5%;
+                            .slogan{
+                                .purchased{
+                                    @include QuickSandRegular(24pt);    
+                                    font-weight: bold;
+                                }
+                                .valor{
+                                    @include MyriadRegular(36pt);    
+                                    color:#fff;
+                                    opacity: 1;
+                                }
+                                .deal{
+                                    @include MyriadRegular(16pt);    
+                                    color:#fff;
+                                    background-color:#1818d2;
+                                    height: 35px;                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .proyectos-productivos{
+            margin-top: 5%;
+            .title{
+                margin-left: 0px;
+            }
             .vertical-divider{                
-                width: 64%;
+                width: 53%;
                 margin-left: 0px;
             }
         }
@@ -198,48 +239,6 @@ body{
             }
         }
         
-    }
-
-    .donation-container{
-        .presentation-mode{
-            .carousel{
-                .control-dots{
-                    text-align: right;
-                    padding-right: 15%;
-                }
-            }
-            
-            .conten-slide{
-                .my-slide-content{
-                    .margen-slogan{
-                        padding-bottom: 10%;
-                    }
-                    .slogan-content{                            
-                        width: 50%;
-                        background-color: rgba(241, 241, 241, 0.7);
-                        text-align: left;
-                        padding-left: 5%;
-                        .slogan{
-                            .purchased{
-                                @include QuickSandRegular(24pt);    
-                                font-weight: bold;
-                            }
-                            .valor{
-                                @include MyriadRegular(36pt);    
-                                color:#fff;
-                                opacity: 1;
-                            }
-                            .deal{
-                                @include MyriadRegular(16pt);    
-                                color:#fff;
-                                background-color:#1818d2;
-                                height: 35px;                                    
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     .header-container{

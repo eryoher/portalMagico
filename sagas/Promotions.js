@@ -1,9 +1,9 @@
 import { all, call, fork, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects';
-import { getPromotionsSuccess } from '../actions';
-import { GET_PROMOTIONS } from '../constants/ActionsTypes';
+import { getPromotionsSuccess, getPromotionSuccess } from '../actions';
+import { GET_PROMOTIONS, GET_PROMOTION } from '../constants/ActionsTypes';
 
 import 
-    { getPromotions }
+    { getPromotions, getPromotion }
 from '../api/Promotions'
 
 
@@ -16,13 +16,27 @@ function* getPromotionsRequest({payload}) {
     }
 }
 
+function* getPromotionRequest({payload}) {
+    try {
+        const response = yield call(getPromotion, payload);
+        yield put( getPromotionSuccess(response) );
+    } catch (error) {
+        
+    }
+}
+
 export function* getPromotionsSaga() {
     yield takeLatest(GET_PROMOTIONS, getPromotionsRequest);
+}
+
+export function* getPromotionSaga() {
+    yield takeLatest(GET_PROMOTION, getPromotionRequest);
 }
 
 
 export default function* rootSaga() {
     yield all([
         fork(getPromotionsSaga),
+        fork(getPromotionSaga),
     ]);
 }

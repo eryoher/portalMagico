@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import { Row, Col, Button } from 'antd';
+import Router from 'next/router'
+
 
 export default class PromotionItem extends Component {  
+
+    handleClickButton() {
+        const { promotion } = this.props
+        Router.push({ pathname: '/promotion', query: { id: promotion.id } });        
+    }
+
     render(){
         const { promotion } = this.props
         let imgUrl 
@@ -27,7 +35,7 @@ export default class PromotionItem extends Component {
                                 </div>                             
                             </div>
                     </div>
-                    <Col className={'sell-button'} > <Button type={'primary'}>Ver mas</Button> </Col>
+                    <Col className={'sell-button'} > <Button onClick={ () => this.handleClickButton() } type={'primary'}>Ver mas</Button> </Col>
                 </Col>
                 <Col span={22} className={'description-item'}>
                     {promotion.description}

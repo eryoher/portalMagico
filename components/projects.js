@@ -56,7 +56,7 @@ class Projects extends Component {
                     </div>
                     <div className={'vertical-divider'} />
                     <div>
-                        
+                        <Ofertas />
                     </div>
                 </Col>
                 <Col span={24} className={'proyectos-productivos '} >
