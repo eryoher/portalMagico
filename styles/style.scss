@@ -466,6 +466,77 @@ body{
         }
     }
 
+
+    .promotion-container{
+        .header{
+            height: 57px;
+            width: 100%;
+            background-color: #058bca;
+        }
+        .content{
+            .ant-tabs-tab{
+                border: 1px solid red;
+                margin: 0 1px 0 0;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                
+            }
+            .promotion-images{
+                .main-image{                
+                    @include backgroundImage;
+                    height: 512px;
+                }
+                .list-images{
+                    .list{                
+                        @include backgroundImage;
+                        height: 148px;
+                        margin: 10px;
+                        margin-top: 20px;
+                        width: 31%;
+                        display: inline-block;
+                    }
+                }
+                .description{
+                    text-align: justify;
+                    @include MyriadRegular(16pt);
+                }
+                .time-promotion{
+                    margin-top: 20px;
+                    .img-clock{
+                        width: 90px;
+                    }
+                    .message{
+                        @include MyriadRegular(24pt);
+                        font-weight: bold;
+                    }
+                    .time{
+                        @include MyriadRegular(24pt);
+                        font-weight: bold;
+                        margin-left: 5%;
+                        .interval{
+                            background-color: #d0cece;
+                            padding: 5px;
+                        }
+                    }
+                }
+                .div-botton-donate{
+                    text-align: center;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    .botton-donate{
+                        color: #fff;
+                        background-color: #080848;
+                        @include MyriadRegular(24pt);
+                        height: 60px;
+                        padding-top: 5px;
+                        border-radius: 50px;
+                        width: 24%;
+                    }                
+                }
+            }
+        }
+    }
+
     .div-divider{
         margin: 0 5px;
         display: inline-block;
@@ -475,5 +546,7 @@ body{
         width: 2px;
         background-color: #3896a2;
     }
+
+
 }
     

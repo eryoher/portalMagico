@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPromotion }  from '../actions';
 import { Row, Col, Modal } from 'antd';
 import * as qs from 'qs';
+import PromotionDetail from '../components/promotions/promotionDetail';
 
 class Promotions extends Component {    
 
@@ -24,16 +25,25 @@ class Promotions extends Component {
     }
 
     render() {
+        const {promotion} = this.props
         return (
-           <div>hola mundo</div>
+           <Row>
+                <Col span={24} className={"promotion-container"}>
+                    <Col span={24} className={"header"} />           
+                    <Col span={24} className={"content"} >
+                        { promotion && <PromotionDetail promotion={promotion} />}
+                    </Col>         
+                </Col>
+           </Row>
         )
     }
 }
 
 function mapStateToProps({ promotions }){
-    const {search} = promotions
+    const {search, promotion} = promotions
     return {
-        search        
+        search,
+        promotion        
     }
 }
 
