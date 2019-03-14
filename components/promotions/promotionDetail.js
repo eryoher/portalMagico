@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
 import Countdown from 'react-countdown-now';
-import { Col, Tabs , Button} from 'antd';
+import { Col, Tabs , Button, Modal} from 'antd';
+import Login from '../common/login';
+import BuyPromotion from '../payments/buyPromotion';
 const TabPane = Tabs.TabPane;
+const MP = require('mercadopago');
 
 export default class PromotionDetail extends Component {    
+
+    constructor(props){
+        super(props);
+        this.state = {
+            showLogin : false,
+            showPay:false
+        }
+    }
 
     renderListImg = () => {
 
@@ -49,6 +60,29 @@ export default class PromotionDetail extends Component {
         }
     }
 
+    handleCallPaid = () => {
+        
+        const token = localStorage.getItem('token')
+        if(!token){            
+            this.setState({showLogin:true})         
+        }else{
+           this.setState({showPay:true})
+
+        }
+    }
+
+    handleCancelLogin = () => {
+        this.setState({showLogin:false});
+    }
+
+    handleCancelPay = () => {
+        this.setState({showPay:false});
+    }
+
+    handleShowLogin = () => {
+        this.setState({showLogin:true});
+    }
+
     render() {
         const {promotion} = this.props
         const urlImage = "http://localhost/freelance/portalMagicoImagenes/img/promotion_1.png";
@@ -72,9 +106,28 @@ export default class PromotionDetail extends Component {
                                 <Countdown date={endDate.getTime()} renderer={this.renderer} />
                             </Col>
                             <Col span={24} className={"div-botton-donate"} >
-                                <Button className={"botton-donate"} > DONAR YA </Button>
+                                <Button className={"botton-donate"} onClick={ () => this.handleCallPaid() } > DONAR YA </Button>
                                 
                             </Col>
+                            <Login 
+                                showLogin = { this.state.showLogin }
+                                onCancelLogin = { this.handleCancelLogin }
+                                onShowLogin = { this.handleShowLogin }
+                            />
+                            { this.state.showPay &&
+                                <Modal
+                                    visible={ this.state.showPay }                
+                                    onCancel= { () => this.handleCancelPay() }
+                                    footer={[]}
+                                >  
+                                    <BuyPromotion 
+                                        promotion = { promotion }
+                                    />
+
+                                </Modal>
+
+
+                            }
                         </Col>
                     </TabPane>
                     <TabPane key={2} tab={'Condiciones'}>

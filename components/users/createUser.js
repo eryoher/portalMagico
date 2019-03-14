@@ -28,8 +28,10 @@ class CreateUser extends Component {
             <Col span={20} offset={2}>               
               <Formik
                   onSubmit={(values, actions) => {
+                      values.roleId = 2;
                       this.props.addUser(values);
                       actions.setSubmitting(false);
+                      this.props.handleChangeModal()
                   }}
                   validationSchema={Yup.object().shape({
                       name: Yup.string().required('El nombre es requerido'),
@@ -40,28 +42,28 @@ class CreateUser extends Component {
                       repeatPassword: Yup.string().oneOf([Yup.ref('password')], 'La contraseñas no coinciden').required('El password es requerido'),
                   })}
                   render={({ values, handleBlur, handleChange, errors, touched, isSubmitting, isValid, handleSubmit, setFieldValue, setFieldTouched }) => (
-                      <Form onSubmit={handleSubmit}>
-                          <Col {...formLayout}>
-                              <UserFormInput                          
-                                  {...{
-                                      values,
-                                      handleBlur,
-                                      handleChange,
-                                      errors,
-                                      touched,
-                                      isSubmitting,
-                                      handleSubmit,
-                                      setFieldValue,
-                                      setFieldTouched
-                                  }}
-                              />
-                          </Col>
-                          <Col span={24} style={{textAlign:'center'}} >
-                            <Button className="ant-btn login-form-button" htmlType="submit" disabled={!isValid || isSubmitting}>
-                                {'Registrarse'}
-                            </Button>
-                          </Col>
-                      </Form>
+                    <Form onSubmit={handleSubmit}>
+                        <Col {...formLayout}>
+                            <UserFormInput                          
+                                {...{
+                                    values,
+                                    handleBlur,
+                                    handleChange,
+                                    errors,
+                                    touched,
+                                    isSubmitting,
+                                    handleSubmit,
+                                    setFieldValue,
+                                    setFieldTouched
+                                }}
+                            />
+                        </Col>
+                        <Col span={24} style={{textAlign:'center'}} >
+                          <Button className="ant-btn login-form-button" htmlType="submit" disabled={!isValid || isSubmitting}>
+                              {'Registrarse'}
+                          </Button>
+                        </Col>
+                    </Form>
                   )}
               />
             </Col>

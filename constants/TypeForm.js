@@ -7,10 +7,15 @@ export const formLayout = {
 }
   
 export const largeItemLayout = {
-    labelCol: { span: 7, offset: 2 },
+    labelCol: { span: 5, offset: 1 },
     wrapperCol: { span: 15 },
 }
 
 export const fullItemLayout = {    
     wrapperCol: { span: 20 , offset:2 },
+}
+
+export const smItemLayout = {
+    labelCol: { span: 5, offset: 1 },
+    wrapperCol: { span: 10 },
 }

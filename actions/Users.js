@@ -5,8 +5,6 @@ import {
 
 
 export const addUser = (params) => {     
-    console.log(params, 'actions');
-              
     return {
         type: ADD_USER,
         payload: params

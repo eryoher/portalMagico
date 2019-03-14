@@ -5,8 +5,7 @@ export const getUser = async (userId) => {
     return response;
 }
 
-
 export const addUser = async (params) => {
-    const response = await Axios.post('/users', params);
+    const response = await Axios.post('/users/createUser', params);
     return response;
 }

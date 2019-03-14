@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { Alert, Layout, Form, Icon, Input, Button, Row, Col } from 'antd';
 
 import { userSignIn, clearError } from '../../actions';
+import {showError} from '../../actions/Common';
 
 const { Content } = Layout;
 const FormItem = Form.Item;
@@ -14,7 +15,6 @@ const FormItem = Form.Item;
 class LoginForm extends Component {
 
   render() {
-
     const { error } = this.props
     const UrlBgLogo = '../../static/img/bg_login_form.png'
     const UrlLogo = '../../static/img/logo_login_form.png'
@@ -39,6 +39,7 @@ class LoginForm extends Component {
                         this.props.clearError();
                         this.props.userSignIn(values);
                         actions.setSubmitting(false);
+                        //this.props.onCloseLogin();
                     }}
                     validationSchema={Yup.object().shape({
                       username: Yup.string().required('El usuario es requerido'),
@@ -54,8 +55,7 @@ class LoginForm extends Component {
                                     className={'input-form-login'}
                                     value={values.username}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    //prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    onBlur={handleBlur}                                    
                                     placeholder={'Usuario *'}
                                 />
                                 {errors.username &&
@@ -70,7 +70,6 @@ class LoginForm extends Component {
                                     value={values.password}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    //prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder={'Password *'}
                                 />
                                 {errors.password &&
@@ -82,7 +81,7 @@ class LoginForm extends Component {
                               </Button>
                             </Col>                            
                             <Col span={12} style={{ paddingTop: 5, paddingBottom: 15 }} >
-                                <a className="login-form-action" href=""> {'Registrarse'} </a>
+                                <a className="login-form-action" onClick={this.props.onChangeModal} href="#"> {'Registrarse'} </a>
                             </Col>                            
                         </Form>
                     )}
@@ -95,8 +94,8 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = ({auth}) => {
-    return { auth }  
+const mapStateToProps = ({common}) => {
+    return { error:common.error }  
 };
 
 export default connect(mapStateToProps, { userSignIn, clearError })(LoginForm);
