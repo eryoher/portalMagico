@@ -25,13 +25,13 @@ class Promotions extends Component {
     }
 
     render() {
-        const {promotion} = this.props
+        const {promotion, auth} = this.props
         return (
            <Row>
                 <Col span={24} className={"promotion-container"}>
                     <Col span={24} className={"header"} />           
                     <Col span={24} className={"content"} >
-                        { promotion && <PromotionDetail promotion={promotion} />}
+                        { promotion && <PromotionDetail promotion={promotion} auth = {auth} />}
                     </Col>         
                 </Col>
            </Row>
@@ -39,11 +39,12 @@ class Promotions extends Component {
     }
 }
 
-function mapStateToProps({ promotions }){
+function mapStateToProps({ promotions, auth }){
     const {search, promotion} = promotions
     return {
         search,
-        promotion        
+        promotion, 
+        auth        
     }
 }
 

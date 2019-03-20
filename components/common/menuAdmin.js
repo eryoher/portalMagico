@@ -16,20 +16,21 @@ export default class MenuAdmin extends Component {
 
     render() {
         const logoURL = '../../static/img/logo-header.png';
+        const {showMenu} = this.props;
         return (
             <Row>
                 <Col span={4} >
                     <img src={logoURL} />
                 </Col>
                 <Col span={17} style={{textAlign:'center', top:'3em'}} >
-                    <Menu
+                    { showMenu && <Menu
                         mode="horizontal"
                         className={'menu-container'}
                     >                
                         <Menu.Item key={'home'}>                            
                             <Link href={{ pathname: '/adminpromotions'}}><a>Promociones</a></Link>
                         </Menu.Item>
-                    </Menu>
+                    </Menu>}
                 </Col>                       
             </Row>
         );

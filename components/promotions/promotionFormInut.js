@@ -59,6 +59,25 @@ export default class PromotionFormInput extends Component {
                         <Col {...formLayout}>
                             <FormItem
                                 {...largeItemLayout}
+                                className={errors.name && touched.name ? 'has-error' : ''}
+                                label={'Nombre'}
+                            >
+                                <Input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    placeholder={'Ingrese el nombre'}
+                                    className={'input-form-login'}
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.name && touched.name && <div className="ant-form-explain">{errors.name}</div>}
+                            </FormItem>
+                        </Col>
+                        <Col {...formLayout}>
+                            <FormItem
+                                {...largeItemLayout}
                                 className={errors.donation && touched.donation ? 'has-error' : ''}
                                 label={'Donacion'}
                             >
@@ -160,6 +179,7 @@ export default class PromotionFormInput extends Component {
                                 label={'Descripcion'}
                             >
                                 <TextArea
+                                    name={'description'}
                                     placeholder={'Ingrese la descripcion'}
                                     rows={4}
                                     value={values.description}
@@ -217,7 +237,7 @@ export default class PromotionFormInput extends Component {
                                     use12Hours format="hh:mm:ss A"  
                                     defaultValue={values.start_time}
                                     onChange = { (value) => {                                        
-                                        setFieldValue( 'start_time', value.format('HH:mm:ss') );                                        
+                                        setFieldValue( 'start_time', value );                                        
                                     }}
                                 />
                             </FormItem>                        
@@ -231,7 +251,7 @@ export default class PromotionFormInput extends Component {
                                     use12Hours format="hh:mm:ss A"  
                                     defaultValue={values.end_time} 
                                     onChange = { (value) => {                                        
-                                        setFieldValue( 'end_time', value.format('HH:mm:ss') );                                        
+                                        setFieldValue( 'end_time', value );                                        
                                     }}
                                 />
                             </FormItem>                        

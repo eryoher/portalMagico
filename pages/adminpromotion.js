@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Row,  Col, Button, Layout, Form } from 'antd';
+import { Row,  Col, Button, Layout, Form, message } from 'antd';
 import LayoutAdmin from '../components/common/layout';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as qs from 'qs';
 import PromotionFormInput from '../components/promotions/promotionFormInut';
 import { formLayout } from '../constants/TypeForm';
-import { getPromotion, getCategories }  from '../actions';
+import { getPromotion, getCategories, updatePromotion, createPromotion }  from '../actions';
 import moment from 'moment-business-days';
+import Router from 'next/router'
+
+
 
 const { Content } = Layout;
-
 
 class AdminPromotion extends Component {
 
@@ -32,24 +34,40 @@ class AdminPromotion extends Component {
         }
     }
 
+    componentDidUpdate = (prevProps) => {
+        if( prevProps.success !== this.props.success ){
+            if( this.props.success ){
+                message.success(this.props.success.data);
+                Router.push('/adminpromotions');
+            }
+        }
+    }
+
     componentWillMount = () => {
         this.props.getCategories();
     }
 
     render() {
-        const {promotion, listCategories} = this.props;
-
+        const {promotion, listCategories} = this.props;        
+        
         const initialValues = {
             donation:null,
-            vigencia:[]
+            vigencia:[],
+            start_time:null,
+            end_time:null
         }
 
         const initial = (this.state.promotionId !== null) ? promotion : initialValues;    
         
-        if (initial && initial.start_date !== undefined && initial.end_date !== undefined) {
+        if (initial && initial.start_date  && initial.end_date ) {
             const vigencia = [moment(initial.start_date), moment(initial.end_date)];
             initial.vigencia = vigencia;
-        }           
+        }
+        
+        if(promotion){            
+            initial.start_time = ( initial.start_time ) ? moment(initial.start_time,'HH:mm:ss') : null;
+            initial.end_time = (  initial.end_time ) ? moment(initial.end_time, 'HH:mm:ss') : null;
+        }
 
         return (
             <LayoutAdmin>
@@ -58,11 +76,19 @@ class AdminPromotion extends Component {
                         <Col span={20} offset={2}>               
                         { initial && <Formik
                             initialValues = {{...initial}}
-                            onSubmit={(values, actions) => {
-                                console.log(values);
-                                
-                                //this.props.addUser(values);
+                            onSubmit={(values, actions) => {                                                                
+                                values.start_time = (values.start_time) ? moment( values.start_time).format('HH:mm:ss') : null;
+                                values.end_time = (values.end_time) ? moment( values.end_time ).format('HH:mm:ss') : null;
+                                delete values.vigencia;
+                                const formData = new FormData();
+                                formData.append("all", JSON.stringify(values));  
                                 actions.setSubmitting(false);                                
+                                if(this.state.promotionId){
+                                    this.props.updatePromotion( values.id, formData);
+                                }else{
+                                    this.props.createPromotion(formData);
+                                }                               
+
                             }}
                             validationSchema={Yup.object().shape({
                                 /*name: Yup.string().required('El nombre es requerido'),
@@ -90,9 +116,14 @@ class AdminPromotion extends Component {
                                             }}
                                         />
                                     </Col>
-                                    <Col span={24} style={{textAlign:'center'}} >
+                                    <Col span={2} offset={10} >
                                         <Button className="ant-btn" type={'primary'} htmlType="submit">
                                             {'Aceptar'}
+                                        </Button>
+                                    </Col>
+                                    <Col span={2}  >
+                                        <Button  href={'/adminpromotions'}  className="ant-btn" type={'primary'} >
+                                            {'Cancelar'}
                                         </Button>
                                     </Col>
                                 </Form>
@@ -107,13 +138,14 @@ class AdminPromotion extends Component {
 }
 
 function mapStateToProps({ promotions, categories }){
-    const {search, promotion} = promotions
+    const {search, promotion, success} = promotions
     return {
         search,
         promotion,
-        listCategories : (categories.categories) ? categories.categories : []
+        listCategories : (categories.categories) ? categories.categories : [],
+        success
     }
 }
 
-export default connect (mapStateToProps,{getPromotion, getCategories})(AdminPromotion);
+export default connect (mapStateToProps,{getPromotion, getCategories, updatePromotion, createPromotion})(AdminPromotion);
 

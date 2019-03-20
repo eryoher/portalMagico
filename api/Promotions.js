@@ -10,3 +10,13 @@ export const getPromotion = async (promotionId) => {
     const response = await Axios.get(`/promotions/${promotionId}`);
     return response;
 }  
+
+export const updatePromotion = async (promotionId, params) => {  
+    const response = await Axios.post(`/promotions/${promotionId}/updatePromotion`, params);
+    return response;
+}
+
+export const createPromotion = async (params) => {  
+    const response = await Axios.post(`/promotions/createPromotion`, params);
+    return response;
+}

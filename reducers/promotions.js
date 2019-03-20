@@ -1,9 +1,10 @@
-import { GET_PROMOTIONS, GET_PROMOTIONS_SUCCESS, GET_PROMOTION, GET_PROMOTION_SUCCESS } from "../constants/ActionsTypes";
+import { GET_PROMOTIONS, GET_PROMOTIONS_SUCCESS, GET_PROMOTION, GET_PROMOTION_SUCCESS, UPDATE_PROMOTION, UPDATE_PROMOTION_SUCCESS, CREATE_PROMOTION, CREATE_PROMOTION_SUCCESS } from "../constants/ActionsTypes";
 
 
 const initialState = {    
     search: null,
-    promotion:null
+    promotion:null,
+    success:null
 }
 
 function rootReducer(state = initialState, action) {
@@ -16,7 +17,14 @@ function rootReducer(state = initialState, action) {
             return { ...state, promotion:null}
         case GET_PROMOTION_SUCCESS:
             return { ...state, promotion:action.payload.data }
-         
+        case CREATE_PROMOTION:
+            return { ...state, success:null }
+        case CREATE_PROMOTION_SUCCESS:
+            return { ...state, success:action.payload.data.response}
+        case UPDATE_PROMOTION:
+            return { ...state, success:null }
+        case UPDATE_PROMOTION_SUCCESS:
+            return { ...state, success:action.payload.data}
         default:
             return state
     }

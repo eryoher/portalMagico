@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getPromotions }  from '../actions';
 import Link  from 'next/link'
-import { Row, Col, Icon, Table } from 'antd';
+import { Row, Col, Icon, Table, Button } from 'antd';
 import Layout from '../components/common/layout';
 
 class AdminPromotions extends Component {
@@ -78,6 +78,10 @@ class AdminPromotions extends Component {
     return (
       <Row>
         <Layout>
+          <Col span={12} offset={6} > <h1>Promociones</h1> </Col>
+          <Col span={6}>
+            <Button type={'primary'} href={'/adminpromotion'} >  Crear <Icon type={'plus'} />   </Button>
+          </Col>
           <Col span={24} >
             { search && <Table columns={this.columns} dataSource={search.data} pagination={pagination} onChange={this.handleTableChange} rowKey={'id'} />}
           </Col>      

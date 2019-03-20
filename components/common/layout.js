@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd';
 import HeaderAdmin from './headerAdmin';
 
-export default class Layaout extends Component {
+export default class Layout extends Component {
 
     render() {
         const {children} = this.props;

@@ -3,10 +3,13 @@ import Countdown from 'react-countdown-now';
 import { Col, Tabs , Button, Modal} from 'antd';
 import Login from '../common/login';
 import BuyPromotion from '../payments/buyPromotion';
-const TabPane = Tabs.TabPane;
-const MP = require('mercadopago');
+import { connect } from 'react-redux';
+import { createPreference } from '../../actions';
 
-export default class PromotionDetail extends Component {    
+const TabPane = Tabs.TabPane;
+
+
+class PromotionDetail extends Component {    
 
     constructor(props){
         super(props);
@@ -60,8 +63,7 @@ export default class PromotionDetail extends Component {
         }
     }
 
-    handleCallPaid = () => {
-        
+    handleCallPaid = () => {        
         const token = localStorage.getItem('token')
         if(!token){            
             this.setState({showLogin:true})         
@@ -83,14 +85,20 @@ export default class PromotionDetail extends Component {
         this.setState({showLogin:true});
     }
 
+    handleCreatePreference = (preference) =>{
+        this.props.createPreference(preference)
+    }
+
     render() {
-        const {promotion} = this.props
+        const {promotion, preference } = this.props
         const urlImage = "http://localhost/freelance/portalMagicoImagenes/img/promotion_1.png";
         const endDate = new Date(promotion.end_date);
-        
+        const urlButton = (preference) ? preference.init_point:"#";
+        const nameButton = (preference) ? "COMPRAR":"DONAR YA";
+        const target = (preference) ? '_blank': '_self';        
         return (
             <Col>
-                <Tabs defaultActiveKey="1">
+                <Tabs defaultActiveKey="1"  type="card" tabPosition="top" >
                     <TabPane key={1} tab={'La oferta'} >
                         <Col span={20} offset={2} className={"promotion-images"} >
                             <Col className={"main-image"} style={{backgroundImage: `url(${urlImage})`}} />
@@ -106,8 +114,7 @@ export default class PromotionDetail extends Component {
                                 <Countdown date={endDate.getTime()} renderer={this.renderer} />
                             </Col>
                             <Col span={24} className={"div-botton-donate"} >
-                                <Button className={"botton-donate"} onClick={ () => this.handleCallPaid() } > DONAR YA </Button>
-                                
+                                <Button href={urlButton} target={target} className={"botton-donate"} onClick={ () => this.handleCallPaid() } > {nameButton} </Button>                                 
                             </Col>
                             <Login 
                                 showLogin = { this.state.showLogin }
@@ -118,15 +125,14 @@ export default class PromotionDetail extends Component {
                                 <Modal
                                     visible={ this.state.showPay }                
                                     onCancel= { () => this.handleCancelPay() }
-                                    footer={[]}
+                                    footer={[]}                                    
                                 >  
                                     <BuyPromotion 
-                                        promotion = { promotion }
+                                        {...this.props}
+                                        onCreatePreference = { this.handleCreatePreference }                                       
+                                        onCancelPay = { this.handleCancelPay }
                                     />
-
                                 </Modal>
-
-
                             }
                         </Col>
                     </TabPane>
@@ -141,3 +147,15 @@ export default class PromotionDetail extends Component {
         )
     }
 }
+
+function mapStateToProps({ auth, payments }){
+    const {preference} = payments;
+    return {
+        auth,
+        preference
+    }
+}
+
+
+
+export default connect (mapStateToProps,{createPreference})(PromotionDetail);

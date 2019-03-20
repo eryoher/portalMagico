@@ -6,7 +6,7 @@ const TabPane = Tabs.TabPane;
 export default class AllCampaigns extends Component {  
     render(){
         return(
-            <Tabs defaultActiveKey="1">
+            <Tabs defaultActiveKey="1" type='card'>
                 <TabPane key={1} tab={'QUIENES SOMOS'} >
                     <ol className={'numbers'} >
                         <li>

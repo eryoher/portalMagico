@@ -9,6 +9,7 @@ import categoriesReducer from  './categories';
 import promotionsReducer from './promotions';
 import userReducer from './Users';
 import commonReducer from './common';
+import paymentsReducer from './payments';
 
 const rootReducer = combineReducers({
     carousel: carouselReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     promotions: promotionsReducer,
     auth:authReducer,
     users: userReducer,
-    common:commonReducer
+    common:commonReducer,
+    payments:paymentsReducer
 });
 
 export default rootReducer;

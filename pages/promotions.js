@@ -78,9 +78,6 @@ class Promotions extends Component {
                                 <span className={'color-blue'} > Una marca </span>
                                 <span className={'text-bold'} > te premia </span>
                             </div>
-                            <div>
-                               <a onClick={ () => this.setState({showLogin:true}) } > Login </a>
-                            </div>
                         </Col>
                         <Col span={24} className={"list-categories"} >
                             { categories && this.renderCategories() }
@@ -92,12 +89,6 @@ class Promotions extends Component {
                                 { search && this.renderPromotions() }
                             </Row>
                         </Col>
-                    </Row>
-                    <Row>
-                        <Login 
-                            showLogin = { this.state.showLogin }
-                            onCancelLogin = { this.handleCancelLogin }
-                        />
                     </Row>
                 </div>
             </div>
