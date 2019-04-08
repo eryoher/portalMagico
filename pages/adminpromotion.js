@@ -7,11 +7,13 @@ import * as Yup from 'yup';
 import * as qs from 'qs';
 import PromotionFormInput from '../components/promotions/promotionFormInut';
 import { formLayout } from '../constants/TypeForm';
-import { getPromotion, getCategories, updatePromotion, createPromotion }  from '../actions';
+import { getPromotion, getCategories, updatePromotion, createPromotion, createInventory }  from '../actions';
 import moment from 'moment-business-days';
 import Router from 'next/router'
+import getConfig from 'next/config';
+import InventoryForm from '../components/inventory/inventory-form';
 
-
+const { publicRuntimeConfig } = getConfig();
 
 const { Content } = Layout;
 
@@ -41,10 +43,59 @@ class AdminPromotion extends Component {
                 Router.push('/adminpromotions');
             }
         }
+
+        if( this.props.inventory && prevProps.inventory != this.props.inventory ){
+            message.success('Se adiciono una nueva cantidad al inventario');
+            this.props.getPromotion( this.state.promotionId );
+        }
     }
 
     componentWillMount = () => {
         this.props.getCategories();
+    }
+
+    onSubmitPromotion = (values) => {
+        const formData = new FormData();
+        if(values.allImages){
+            const { toSave, toRemove } = values.allImages;
+            toSave.forEach((file) => {
+                formData.append("imageToSave", file);
+            });
+            toRemove.forEach((file) => {
+                formData.append('imagesToRemove', file);
+            });
+            delete values.allImages;
+        }
+        values.start_time = (values.start_time) ? moment( values.start_time).format('HH:mm:ss') : null;
+        values.end_time = (values.end_time) ? moment( values.end_time ).format('HH:mm:ss') : null;
+        delete values.vigencia;        
+        formData.append("all", JSON.stringify(values));  
+                                
+        if(this.state.promotionId){
+            this.props.updatePromotion( values.id, formData);
+        }else{
+            this.props.createPromotion(formData);
+        }                               
+    }
+
+    buildUploadedFiles = (imagesFiles) => {
+        const files = imagesFiles || []
+        return files.map(filename => {
+            const url = `${publicRuntimeConfig.promotionImagesBasePath}${filename.name}`
+            return {
+                uid: filename.name,
+                name: filename.name,
+                status: 'done',
+                origin: 'remote',
+                url: url
+            }
+        });
+    };
+    
+    handleSubmitInventory = (data) => {
+        const {auth, createInventory} = this.props;
+        data.usersId = auth.userId        
+        createInventory(data);
     }
 
     render() {
@@ -68,7 +119,9 @@ class AdminPromotion extends Component {
             initial.start_time = ( initial.start_time ) ? moment(initial.start_time,'HH:mm:ss') : null;
             initial.end_time = (  initial.end_time ) ? moment(initial.end_time, 'HH:mm:ss') : null;
         }
+        const uploadedFiles = (promotion && promotion.assets) ? this.buildUploadedFiles(promotion.assets) : [];
 
+        
         return (
             <LayoutAdmin>
                 <Content className="form-content">
@@ -77,18 +130,8 @@ class AdminPromotion extends Component {
                         { initial && <Formik
                             initialValues = {{...initial}}
                             onSubmit={(values, actions) => {                                                                
-                                values.start_time = (values.start_time) ? moment( values.start_time).format('HH:mm:ss') : null;
-                                values.end_time = (values.end_time) ? moment( values.end_time ).format('HH:mm:ss') : null;
-                                delete values.vigencia;
-                                const formData = new FormData();
-                                formData.append("all", JSON.stringify(values));  
-                                actions.setSubmitting(false);                                
-                                if(this.state.promotionId){
-                                    this.props.updatePromotion( values.id, formData);
-                                }else{
-                                    this.props.createPromotion(formData);
-                                }                               
-
+                                this.onSubmitPromotion( values );
+                                actions.setSubmitting(false);
                             }}
                             validationSchema={Yup.object().shape({
                                 /*name: Yup.string().required('El nombre es requerido'),
@@ -101,7 +144,8 @@ class AdminPromotion extends Component {
                             render={({ values, handleBlur, handleChange, errors, touched, isSubmitting, isValid, handleSubmit, setFieldValue, setFieldTouched }) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Col {...formLayout}>
-                                        <PromotionFormInput                     
+                                        <PromotionFormInput   
+                                            uploadedFiles ={uploadedFiles}
                                             {...{
                                                 values,
                                                 handleBlur,
@@ -130,22 +174,32 @@ class AdminPromotion extends Component {
                             )}
                         />}
                         </Col>
-                    </Row>            
+                        <Col span={24} style={{paddingTop:'25px'}} >
+                           { promotion &&  
+                            <InventoryForm 
+                                promotion={promotion}  
+                                onSubmitInventory = { this.handleSubmitInventory }
+                            />}
+                        </Col>
+                    </Row>                                
                 </Content>
             </LayoutAdmin>
         )
     }
 }
 
-function mapStateToProps({ promotions, categories }){
+function mapStateToProps({ promotions, categories, auth, inventories }){
     const {search, promotion, success} = promotions
+    const {inventory} = inventories;
     return {
         search,
         promotion,
         listCategories : (categories.categories) ? categories.categories : [],
-        success
+        success,
+        auth,
+        inventory
     }
 }
 
-export default connect (mapStateToProps,{getPromotion, getCategories, updatePromotion, createPromotion})(AdminPromotion);
+export default connect (mapStateToProps,{getPromotion, getCategories, updatePromotion, createPromotion, createInventory})(AdminPromotion);
 

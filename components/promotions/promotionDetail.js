@@ -5,9 +5,10 @@ import Login from '../common/login';
 import BuyPromotion from '../payments/buyPromotion';
 import { connect } from 'react-redux';
 import { createPreference } from '../../actions';
+import getConfig from 'next/config';
 
+const { publicRuntimeConfig } = getConfig();
 const TabPane = Tabs.TabPane;
-
 
 class PromotionDetail extends Component {    
 
@@ -15,33 +16,30 @@ class PromotionDetail extends Component {
         super(props);
         this.state = {
             showLogin : false,
-            showPay:false
+            showPay:false,
+            urlMainImg:null, 
+            assetSelected: null
         }
     }
 
+    onChangeMain = (file) => {
+        const url  = `${publicRuntimeConfig.promotionImagesBasePath}${file.name}`;
+        this.setState({urlMainImg:url, assetSelected:file.id});
+    }
+
     renderListImg = () => {
+        const {assets} = this.props.promotion;
+        const {assetSelected} = this.state;
+        let rows = [];           
+        let permited = true;
 
-        const listImages = [
-            {
-                name:"nombre 1",
-                url: "http://localhost/freelance/portalMagicoImagenes/img/promotion_list_1.png"
-            },
-            {
-                name:"nombre 2",
-                url: "http://localhost/freelance/portalMagicoImagenes/img/promotion_list_2.png"
-            },
-            {
-                name:"nombre 3",
-                url: "http://localhost/freelance/portalMagicoImagenes/img/promotion_list_3.png"
+        assets.forEach( (asset, index) => {            
+            permited = ( !index && !assetSelected ) ? false : ( assetSelected && assetSelected == asset.id ) ? false:true;            
+            if(permited){
+                rows.push(
+                    <div key={asset.id} onClick={ () => this.onChangeMain(asset) }  className={"list"} style={{backgroundImage: `url(${publicRuntimeConfig.promotionImagesBasePath}${asset.name})`}} />
+                )
             }
-        ]
-
-        let rows = [];
-        
-        listImages.forEach( item => {
-            rows.push(
-                <div key={item.name} className={"list"} style={{backgroundImage: `url(${item.url})`}} />
-            )
         });
 
         return rows;
@@ -91,17 +89,30 @@ class PromotionDetail extends Component {
 
     render() {
         const {promotion, preference } = this.props
-        const urlImage = "http://localhost/freelance/portalMagicoImagenes/img/promotion_1.png";
-        const endDate = new Date(promotion.end_date);
+        const { urlMainImg } = this.state;        
+        let urlImage = (promotion.assets.length) ? `${publicRuntimeConfig.promotionImagesBasePath}${promotion.assets[0].name}` : "http://localhost/freelance/portalMagicoImagenes/img/promotion_1.png";
+        let endDate = new Date();
+        if( urlMainImg ){
+            urlImage = urlMainImg ;
+        }
+        if( promotion.end_date && promotion.end_time ){
+            let newEnd = promotion.end_date.split('T')[0] +" "+ promotion.end_time
+            endDate = new Date(newEnd);    
+        }else{
+            endDate = new Date(promotion.end_date);
+        }
+        
         const urlButton = (preference) ? preference.init_point:"#";
-        const nameButton = (preference) ? "COMPRAR":"DONAR YA";
+        const nameButton = (preference) ? "Comprar":"Donar Ya";
         const target = (preference) ? '_blank': '_self';        
         return (
             <Col>
                 <Tabs defaultActiveKey="1"  type="card" tabPosition="top" >
                     <TabPane key={1} tab={'La oferta'} >
                         <Col span={20} offset={2} className={"promotion-images"} >
-                            <Col className={"main-image"} style={{backgroundImage: `url(${urlImage})`}} />
+                            <Col className={"main-image"} >
+                                <img src={urlImage} />
+                            </Col>
                             <Col className={"list-images"} >
                                 {this.renderListImg()}
                             </Col>
@@ -113,8 +124,11 @@ class PromotionDetail extends Component {
                                 <span className={"message"}>Tiempo Restante </span>
                                 <Countdown date={endDate.getTime()} renderer={this.renderer} />
                             </Col>
-                            <Col span={24} className={"div-botton-donate"} >
+                            <Col span={5} offset={7} className={"div-botton-donate"} >
                                 <Button href={urlButton} target={target} className={"botton-donate"} onClick={ () => this.handleCallPaid() } > {nameButton} </Button>                                 
+                            </Col>
+                            <Col span={5} offset={1} className={"div-botton-donate"} >
+                                <Button href={'/'} target={target} className={"botton-donate"}> Volver </Button>                                 
                             </Col>
                             <Login 
                                 showLogin = { this.state.showLogin }

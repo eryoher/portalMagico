@@ -4,7 +4,9 @@ import {
     CREATE_GIFT_CARD,
     CREATE_GIFT_CARD_SUCCESS,
     CREATE_TOKEN_CARD,
-    CREATE_TOKEN_CARD_SUCCESS
+    CREATE_TOKEN_CARD_SUCCESS,
+    GET_PAYMENT,
+    GET_PAYMENT_SUCCESS
 } from '../constants/ActionsTypes';
 
 
@@ -51,4 +53,16 @@ export const createTokenCardSuccess = (token) => {
     }        
 };
 
-createTokenCard
+export const getPayment = ( paymentId ) => {     
+    return {
+        type: GET_PAYMENT,
+        payload:{paymentId}
+    }        
+};
+
+export const getPaymentSuccess = (payment) => {               
+    return {
+        type: GET_PAYMENT_SUCCESS,
+        payload:payment      
+    }        
+};

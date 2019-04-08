@@ -15,7 +15,7 @@ const FormItem = Form.Item;
 class LoginForm extends Component {
 
   render() {
-    const { error } = this.props
+    const { error, regiter } = this.props
     const UrlBgLogo = '../../static/img/bg_login_form.png'
     const UrlLogo = '../../static/img/logo_login_form.png'
     return (      
@@ -80,9 +80,9 @@ class LoginForm extends Component {
                                 {'Iniciar'}
                               </Button>
                             </Col>                            
-                            <Col span={12} style={{ paddingTop: 5, paddingBottom: 15 }} >
+                            { regiter && <Col span={12} style={{ paddingTop: 5, paddingBottom: 15 }} >
                                 <a className="login-form-action" onClick={this.props.onChangeModal} href="#"> {'Registrarse'} </a>
-                            </Col>                            
+                            </Col>}                            
                         </Form>
                     )}
                 />

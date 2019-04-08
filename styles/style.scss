@@ -10,6 +10,13 @@ body{
     padding-left: 0px;
     padding-right: 0px;
     margin: 0px auto !important;
+    
+    .top-header{                
+        background-repeat: repeat-x;
+        height: 46px;
+        background-size: cover;
+        
+    }
 
     .color-blue{
         color:$blue;
@@ -97,9 +104,30 @@ body{
                 }
                 .subcontent{
                     width: 50%;
-                    background-color: rgba(241, 241, 241, 0.3);
+                    background-color: rgba(107, 101, 101, 0.3);
                     text-align: left;
-                    padding-left: 5%;
+                    
+                    .slogan{
+                        margin-left: 5%;                       
+                        
+                        .purchased{
+                            padding-left: 5%;
+                            background-image: linear-gradient(#827e7a99, #b7acb63d);    
+                            @include MyriadRegular(14pt);    
+                        }
+
+                        .valor{
+                            padding-left: 5%;
+                            @include MyriadRegular(18pt);    
+
+
+                        }
+                        .deal{
+                            @include MyriadRegular(14pt);    
+                            padding-left: 5%;
+                            background-image: linear-gradient(#f4971d, #fed532);    
+                        }
+                    }
                 }
 
                 .sell-button{     
@@ -345,6 +373,16 @@ body{
         .campaign-content{
             padding-top: 3%;
             @include MyriadRegular(11pt);
+
+            .ant-tabs-card-bar{       
+                .ant-tabs-tab{                    
+                    background-image: linear-gradient(#ffffff);
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;                    
+                    color:#000;
+                }                                      
+            }
+
             .numbers{
                 .content-ul{
                     text-align: justify;
@@ -466,7 +504,10 @@ body{
         }
     }
 
-    .buyPromotion-content{
+    .buypromotion-content{
+        @include backgroundImage;
+        background-repeat: no-repeat;
+        background-position-x: center;
         padding-top: 21%;
         h3{
             @include MyriadRegular(19pt);
@@ -480,7 +521,7 @@ body{
             height: 48px;
             border-radius: 30px;
             width: 35%;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
     }
 
@@ -494,8 +535,7 @@ body{
             margin-top: 20px;
             
             .ant-tabs-card-bar{       
-                .ant-tabs-tab{
-                    border: 0px solid red;
+                .ant-tabs-tab{                    
                     background-image: linear-gradient(#1f1b2d, #165a9d);
                     border-top-left-radius: 10px;
                     border-top-right-radius: 10px;                    
@@ -504,8 +544,11 @@ body{
             }
             .promotion-images{
                 .main-image{                
-                    @include backgroundImage;
-                    height: 512px;
+                    img{
+                        height: 512px;
+                        width: 100%;
+                    }
+                    
                 }
                 .list-images{
                     .list{                
@@ -551,13 +594,58 @@ body{
                         height: 60px;
                         padding-top: 15px;
                         border-radius: 50px;
-                        width: 24%;
+                        width: 100%;
                     }                
                 }
             }
         }
     }
 
+    .confirmation-content{
+        margin-top: 25px;
+        text-align: center;
+        @include MyriadRegular(16pt);
+        .title{
+            @include MyriadRegular(24pt);
+        }
+
+        .confirm-label{
+            font-weight: bold;
+            border: 1px solid gray;
+            background-color: #44bccc;
+        }
+        .confirm-value{
+            background-color: #d1d5d6;
+            border: 1px solid gray;
+        }
+
+        .botton-donate{            
+            color: #fff;                        
+            background-image: linear-gradient(#1f1b2d, #165a9d);
+            @include MyriadRegular(24pt);
+            height: 60px;
+            padding-top: 15px;
+            border-radius: 50px;
+            width: 150px;
+        }  
+    }
+
+    .smile-content{
+        .title{
+            @include MyriadRegular(28pt);
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .content{
+            @include MyriadRegular(18pt);
+            text-align: justify;
+        }
+        .columns{
+            @include MyriadRegular(14pt);
+            text-align: justify;
+        }
+    }
     .div-divider{
         margin: 0 5px;
         display: inline-block;
@@ -567,7 +655,6 @@ body{
         width: 2px;
         background-color: #3896a2;
     }
-
 
 }
     

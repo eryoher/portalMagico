@@ -1,12 +1,15 @@
 import { CREATE_PREFERENCE, CREATE_PREFERENCE_SUCCESS, CREATE_GIFT_CARD, CREATE_GIFT_CARD_SUCCESS,
     CREATE_TOKEN_CARD,
-    CREATE_TOKEN_CARD_SUCCESS
+    CREATE_TOKEN_CARD_SUCCESS,
+    GET_PAYMENT,
+    GET_PAYMENT_SUCCESS
 } from "../constants/ActionsTypes";
 
 const initialState = {    
     preference: null,
     giftCard:null,
-    tokenCard:null
+    tokenCard:null,
+    paymentConfirm:null
 }
 
 function rootReducer(state = initialState, action) {
@@ -23,6 +26,10 @@ function rootReducer(state = initialState, action) {
             return { ...state, tokenCard:null }
         case CREATE_TOKEN_CARD_SUCCESS:
             return { ...state, tokenCard:action.payload.data }
+        case GET_PAYMENT:
+            return { ...state, paymentConfirm:null }
+        case GET_PAYMENT_SUCCESS:
+            return { ...state, paymentConfirm:action.payload.data }
         default:
             return state
     }

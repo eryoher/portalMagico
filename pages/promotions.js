@@ -4,7 +4,6 @@ import { getCategoriesWithProduct, getPromotions }  from '../actions';
 import { Row, Col, Modal } from 'antd';
 import PromotionItem from '../components/promotions/promotionItem'
 import CategoryItem from '../components/categories/categoryItem';
-import Login from '../components/common/login'
 
 class Promotions extends Component {    
 
@@ -52,15 +51,22 @@ class Promotions extends Component {
         let rows = []        
         
         categories.data.forEach(category => {
-           rows.push(
+            rows.push(
                 <CategoryItem key={category.id}
                     data = { category }
                     onSelecteCategory = {  this.handleSelectCategory }
                 />
-           ) 
+            ) 
         }); 
 
         return rows;       
+    }
+
+    handleClearCategory = () => {
+        this.props.getPromotions({
+            page:1,
+            pageSize:10
+        });        
     }
 
     handleCancelLogin = () =>{
@@ -74,7 +80,7 @@ class Promotions extends Component {
                 <div className={'container'} >
                     <Row>
                         <Col>
-                            <div className={'title'} >
+                            <div className={'title'} onClick={ this.handleClearCategory } >
                                 <span className={'color-blue'} > Una marca </span>
                                 <span className={'text-bold'} > te premia </span>
                             </div>

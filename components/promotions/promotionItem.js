@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Button } from 'antd';
 import Router from 'next/router'
+import getConfig from 'next/config';
 
+const { publicRuntimeConfig } = getConfig();
 
 export default class PromotionItem extends Component {  
 
@@ -12,12 +14,13 @@ export default class PromotionItem extends Component {
 
     render(){
         const { promotion } = this.props
-        let imgUrl 
-        if( promotion.id % 2 == 0 ){
-            imgUrl = 'http://localhost:3000/static/img/promotions/green_lantern.jpg'
-        }else{
-            imgUrl = 'http://localhost:3000/static/img/promotions/superman.jpg'
+        const bgSubcontent = '../../static/img/promotions/bg_promotions.png';
+        let imgUrl = '../../static/img/promotions/green_lantern.jpg'
+        if( promotion.assets.length ){
+            imgUrl = `${publicRuntimeConfig.promotionImagesBasePath}${promotion.assets[0].name}`;
         }
+        let discount = promotion.price * ( promotion.discount / 100 ) 
+
         return(
             <Row>
                 <Col span={22} className={'promotion-item'} style={{backgroundImage: `url(${imgUrl})`}} >
@@ -25,20 +28,20 @@ export default class PromotionItem extends Component {
                     <div className="subcontent">
                             <div className="slogan">
                                 <div className={'purchased'} >
-                                    { `Comprados: ${promotion.quantity} ` }
+                                    { `Cantidad: ${promotion.total} ` }
                                 </div>
                                 <div className="valor">
-                                    { `Valor: ${promotion.price} ` }
+                                    { `Valor: ${promotion.price.toLocaleString()} ` }
                                 </div>           
                                 <div className={'deal'}>
-                                    { `Ahorra: ${promotion.discount}` }                                        
+                                    { `Ahorra: ${discount.toLocaleString() } ` }                                        
                                 </div>                             
                             </div>
                     </div>
                     <Col className={'sell-button'} > <Button onClick={ () => this.handleClickButton() } type={'primary'}>Ver mas</Button> </Col>
                 </Col>
                 <Col span={22} className={'description-item'}>
-                    {promotion.description}
+                    {promotion.description.substr(0,100)}
                 </Col>                
             </Row>
         )

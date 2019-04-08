@@ -7,7 +7,7 @@ export const getPromotions = async (params) => {
 }
 
 export const getPromotion = async (promotionId) => {  
-    const response = await Axios.get(`/promotions/${promotionId}`);
+    const response = await Axios.get(`/promotions/${promotionId}?filter={"include": [{"relation": "assets"}, {"relation": "inventory"}]}`);
     return response;
 }  
 

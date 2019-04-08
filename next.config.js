@@ -1,16 +1,26 @@
 
 const withSass = require('@zeit/next-sass')
 const withFonts = require('next-fonts');
+const lineBase = "http://localhost:3001/api"; //localhost
+//const lineBase = "http://app.fundacionportalmagico.org:3001/api"; //portalmagico
+
+module.exports = {
+  exportPathMap: function() {
+    return {
+      '/': { page: '/' }
+    }
+  }
+}
 
 module.exports = withFonts ( withSass({ 
   serverRuntimeConfig: { // Will only be available on the server side   
   },
   publicRuntimeConfig: { // Will be available on both server and client
-    apiUrl: process.env.API_URL || "http://localhost:3001/api",
+    mercadoPagoToken: 'TEST-6989747173808942-031217-2e6e01703e7f786b1592f32bf6b42d74-147807596',
+    appUrl: "http://localhost:3000",
+    apiUrl: process.env.API_URL || lineBase,
     allowedImageFileTypes: ['image/jpeg', 'image/png', "image/jpg"],
     allowedImageFileSize: 1, // max file Size in MB
-    productImagesBasePath: process.env.IMG_BASE_PATH ? (process.env.IMG_BASE_PATH + '/products/') : ((process.env.API_URL || "http://localhost:3001/api") + "/Productos/downloadImage?filename="),
-    dealImagesBasePath: process.env.IMG_BASE_PATH ? (process.env.IMG_BASE_PATH + '/deals/') : ((process.env.API_URL || "http://localhost:3001/api") + "/Ofertas/downloadImage?filename="),
-    logoImagesBasePath: process.env.IMG_BASE_PATH ? (process.env.IMG_BASE_PATH + '/logos/') : ((process.env.API_URL || "http://localhost:3001/api") + "/configuracionesClientes/downloadImage?filename=")    
+    promotionImagesBasePath: process.env.IMG_BASE_PATH ? (process.env.IMG_BASE_PATH + '/promotions/') : ((process.env.API_URL || lineBase) + "/Promotions/downloadImage?filename="),
   }
 }))

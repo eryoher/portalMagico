@@ -1,8 +1,24 @@
 import React, { Component } from 'react'
-import { Row } from 'antd';
+import { connect } from 'react-redux';
+import Router from 'next/router'
+
+import { Row, message } from 'antd';
 import HeaderAdmin from '../components/common/headerAdmin';
 
-export default class Admin extends Component {
+class Admin extends Component {
+
+  componentDidMount = () => {
+    const {auth} = this.props;
+    console.log(auth);
+    if( !auth.token ||  !auth.user.id ){
+      message.error('El usuario debe estar logeado.');
+      Router.push('/login');      
+    }else if( auth.user.Role.name != 'Administrador' ){
+      message.error('El usuario no tiene permisos para este formulario.');
+      Router.push('/');      
+    }    
+  }
+
   render() {
     return (
         <Row>
@@ -11,3 +27,11 @@ export default class Admin extends Component {
     )
   }
 }
+
+function mapStateToProps({ auth }){  
+  return {
+    auth
+  }
+}
+
+export default connect (mapStateToProps,{})(Admin);

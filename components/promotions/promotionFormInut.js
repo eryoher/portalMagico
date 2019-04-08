@@ -20,8 +20,8 @@ export default class PromotionFormInput extends Component {
     }
 
     handleSave = (imagesToUpdate) => {
-        console.log(imagesToUpdate);
-        
+        const {setFieldValue} = this.props;
+        setFieldValue( 'allImages', imagesToUpdate );        
     }
 
     dateChange = (field, dates, values) => {
@@ -50,7 +50,7 @@ export default class PromotionFormInput extends Component {
     }
 
     render() {
-        const { t, errors, touched, values, handleChange, handleBlur, setFieldValue, setFieldTouched, search, isSubmitting, listCategories } = this.props;
+        const { t, errors, touched, values, handleChange, handleBlur, setFieldValue, setFieldTouched, search, uploadedFiles, listCategories } = this.props;
 
         return (
             <Row>
@@ -132,7 +132,7 @@ export default class PromotionFormInput extends Component {
                                 {errors.price && touched.price && <div className="ant-form-explain">{errors.price}</div>}
                             </FormItem>
                         </Col>
-                        <Col {...formLayout}>
+                        { !values.id && <Col {...formLayout}>
                             <FormItem
                                 {...largeItemLayout}
                                 className={errors.quantity && touched.quantity ? 'has-error' : ''}
@@ -150,7 +150,7 @@ export default class PromotionFormInput extends Component {
                                 />
                                 {errors.quantity && touched.quantity && <div className="ant-form-explain">{errors.quantity}</div>}
                             </FormItem>
-                        </Col>
+                        </Col>}
                         <Col {...formLayout}>
                             <FormItem
                                 {...largeItemLayout}
@@ -262,10 +262,9 @@ export default class PromotionFormInput extends Component {
                                 label={'Imagenes'}
                             >
                                 <UploadFiles
-                                    //uploadedFiles={uploadedFiles}
+                                    uploadedFiles={uploadedFiles}
                                     onChange={this.handleSave}
                                     limit={4}
-                                    //button={this.buildButton()}
                                 />
                             </FormItem>                        
                         </Col>                        

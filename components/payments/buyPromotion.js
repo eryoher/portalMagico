@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { smItemLayout, formLayout } from '../../constants/TypeForm';
 import { Row, Col, Form, Input, Select, AutoComplete, Button, Divider, DatePicker } from 'antd';
-import MP from 'mercadopago';
-const FormItem = Form.Item;
+import getConfig from 'next/config';
 
-var mps = new MP ("TEST-6989747173808942-031217-2e6e01703e7f786b1592f32bf6b42d74-147807596");
+const { publicRuntimeConfig } = getConfig();
+const FormItem = Form.Item;
 
 export default class BuyPromotion extends Component {
 
@@ -15,49 +15,10 @@ export default class BuyPromotion extends Component {
         }
     }
 
-    renderPay = () => {
-        var mp = new MP ("6989747173808942", "Vr3KMuZ4MWX8KvkQuq5hHR0ZCuFumWBF");
-        
-        var preference = {
-            items: [
-              {
-                id: '1234',
-                title: 'Prueba Primer pago',
-                quantity: 3,
-                currency_id: 'COP',
-                unit_price: 5500
-              }
-            ],
-            payer: {
-              email: 'eryoher@gmail.com'
-            },
-            back_urls: {
-                "success": "http://www.google.com.co",
-                "failure": "http://www.google.com.co",
-                "pending": "https://www.google.com.co"
-            },
-            auto_return: "approved",               
-            external_reference: "promotion_1234",
-            binary_mode: true
-        };
-
-         
-        mps.preferences.create(preference)
-            .then(function (preference) {
-              // Do something if preference has been created successfully
-              console.log('funciona', preference);
-              
-            }).catch(function (error) {
-              // If an error has occurred
-              console.log('obvio error', error);
-              
-            }
-        );
-    }
-
     handleSubmitbuy = () => {
         const {promotion, auth} = this.props;
         const { user } = auth;
+        const notificationUrl = `${publicRuntimeConfig.apiUrl}/notifications/checkPayment`;
         
         var preference = {
             items: [
@@ -70,19 +31,20 @@ export default class BuyPromotion extends Component {
               }
             ],
             payer: {
-              email: 'eryoher@gmail.com',
+              email: user.email,
               name: user.name,
+              lastname:user.lastname,
               surname: user.username,
               phone:{
                   number: parseInt(user.phone)
               }
             },
             back_urls: {
-                "success": "http://locahost:3000/promotions",
-                "failure": "http://localhost:3000",                
+                "success": `${publicRuntimeConfig.appUrl}/confirmationPay`                              
             },
             auto_return: "approved",               
-            external_reference: `promotion_${promotion.id}` ,
+            external_reference: promotion.id ,
+            notification_url:notificationUrl,
             binary_mode: true
         };             
                
@@ -97,7 +59,7 @@ export default class BuyPromotion extends Component {
         const {user}  = auth;
         const {cantidad} = this.state;
         return (
-            <Row className={'buyPromotion-content'} style={{backgroundImage: `url('../../static/img/bg_modal_buy.png')`}} >
+            <Row className={'buypromotion-content'} style={{backgroundImage: `url('../../static/img/bg_modal_buy.png')`}} >
                 <Divider><h3>Datos del Usuario </h3></Divider>
                     <FormItem
                         {...smItemLayout}                    

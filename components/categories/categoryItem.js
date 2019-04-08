@@ -4,7 +4,7 @@ import { Row, Col, Button } from 'antd';
 export default class CategoryItem extends Component {  
     render(){
         const { data, onSelecteCategory } = this.props
-        const imgUrl = `http://localhost:3000/static/img/categories/${data.icon}.png`
+        const imgUrl = `../../static/img/categories/${data.icon}.png`
 
         return(            
             <Col span={6}  className={'category-item'} >

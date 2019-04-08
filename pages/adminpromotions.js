@@ -35,6 +35,16 @@ class AdminPromotions extends Component {
           
       }, 
       {
+        title: "Cantidad",
+        dataIndex: 'quantity',
+        key: 'quantity',
+        width: 200,
+        render: (text, record) => {
+          return  this.renderQuantity(record);          
+        },
+        
+      },
+      {
           title: "Acciones",
           key: 'action',
           width: 150,
@@ -48,6 +58,19 @@ class AdminPromotions extends Component {
           },
       }
     ];
+  }
+
+  renderQuantity = (record) => {
+    let quantity = 0
+    record.inventory.forEach( item => {
+      if(item.type == 1){
+        quantity = quantity + parseInt( item.quantity );
+      }else{
+        quantity = quantity - parseInt( item.quantity );
+      }
+    });
+
+    return quantity
   }
 
   componentWillMount = () => {

@@ -33,12 +33,12 @@ function* signInUser({ payload }) {
             Axios.defaults.headers.common['authorization'] = response.id;
 
             //Get user info
-            //const userResponse = yield call(getUser);
-            ///const userData = userResponse.data;
+            const userResponse = yield call(getUser, response.userId);
+            const userData = userResponse.data;
 
-            localStorage.setItem('user', JSON.stringify(response.user));
+            localStorage.setItem('user', JSON.stringify(userData));
 
-            yield put({ type: SIGNIN_USER_SUCCESS, data: { userId: response.userId, token: response.id, user: response.user } });            
+            yield put({ type: SIGNIN_USER_SUCCESS, data: { userId: response.userId, token: response.id, user: userData } });            
         }
 
     } catch (err) {

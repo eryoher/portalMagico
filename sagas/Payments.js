@@ -1,11 +1,11 @@
 import { all, call, fork, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects';
 
 import 
-    { createPreference, createGiftCard, createTokenCard }
+    { createPreference, createGiftCard, createTokenCard , getPayment }
 from '../api/Payments'
 
-import { CREATE_PREFERENCE, CREATE_GIFT_CARD, CREATE_TOKEN_CARD } from '../constants/ActionsTypes';
-import { createPreferenceSuccess, createGiftCardSuccess, createTokenCardSuccess } from '../actions';
+import { CREATE_PREFERENCE, CREATE_GIFT_CARD, CREATE_TOKEN_CARD, GET_PAYMENT } from '../constants/ActionsTypes';
+import { createPreferenceSuccess, createGiftCardSuccess, createTokenCardSuccess, getPaymentSuccess } from '../actions';
 
 
 function* createPreferenceRequest({payload}) {
@@ -19,7 +19,6 @@ function* createPreferenceRequest({payload}) {
 }
 
 function* createGiftCardRequest({payload}) {
-    console.log(payload, 'aca');
     
     const {params, token} = payload;
     try {
@@ -41,6 +40,17 @@ function* createTokenCardRequest() {
     }
 }
 
+function* getPaymentRequest({payload}) {    
+    const {paymentId} = payload
+    try {
+        const response = yield call(getPayment, paymentId);
+        yield put( getPaymentSuccess(response) );
+    } catch (error) {
+        
+    }
+}
+
+
 export function* createPreferenceSaga() {
     yield takeLatest(CREATE_PREFERENCE, createPreferenceRequest);
 }
@@ -53,11 +63,15 @@ export function* createTokenCardSaga() {
     yield takeLatest(CREATE_TOKEN_CARD, createTokenCardRequest);
 }
 
+export function* getPaymentSaga() {
+    yield takeLatest(GET_PAYMENT, getPaymentRequest);
+}
 
 export default function* rootSaga() {
     yield all([
         fork(createPreferenceSaga),
         fork(createTokenCardSaga),
         fork(createGiftCardSaga),
+        fork(getPaymentSaga),
     ]);
 }
