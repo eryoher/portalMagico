@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Layout, Form, Button, Row, Col } from 'antd';
-import { addUser } from '../../actions';
+import { addUser } from '../../actions/Users';
 import { formLayout } from '../../constants/TypeForm';
 import UserFormInput from './userFormInput';
 

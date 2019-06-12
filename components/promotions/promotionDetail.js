@@ -103,7 +103,7 @@ class PromotionDetail extends Component {
         }
         
         const urlButton = (preference) ? preference.init_point:"#";
-        const nameButton = (preference) ? "Comprar":"Donar Ya";
+        const nameButton = (preference) ? "Donar Ya":"Dona Aqui";
         const target = (preference) ? '_blank': '_self';        
         return (
             <Col>

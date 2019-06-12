@@ -45,6 +45,7 @@ class Login extends Component {
                     <LoginForm 
                         onChangeModal = { () => this.handleChangeModal() }
                         onCloseLogin = { this.props.onCancelLogin }
+                        register
                     />
                 </Modal>
                 <Modal

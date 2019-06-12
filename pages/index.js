@@ -111,11 +111,6 @@ class HomePage extends Component {
                 </Row>
                 <Row>
                   <div className={"top-header w-100"} style={{backgroundImage: `url(${bgBlue})`, height:'16px'}}  />
-                  
-                  <GiveSmile />
-
-                  <div className={"top-header w-100"} style={{backgroundImage: `url(${bgBlue})`, height:'16px'}}  />
-
                 </Row>
             </div>
         </div>

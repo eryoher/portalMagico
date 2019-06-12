@@ -5,17 +5,17 @@
 @import 'functions';
 
 
-body{    
+body{
     max-width: $width-page;
     padding-left: 0px;
     padding-right: 0px;
     margin: 0px auto !important;
-    
-    .top-header{                
+
+    .top-header{
         background-repeat: repeat-x;
         height: 46px;
         background-size: cover;
-        
+
     }
 
     .color-blue{
@@ -37,17 +37,17 @@ body{
                 .logo-img{
                     width: 200px;
                     padding-top: 50px;
-                }                
+                }
                 .title{
                     color:#57abde;
-                    @include MyriadRegular(26pt);    
+                    @include MyriadRegular(26pt);
 
                 }
             }
 
             .form-content{
                 .input-form-login{
-                    @include MyriadRegular(14pt);    
+                    @include MyriadRegular(14pt);
                     background-color: #ededed;
                     box-shadow: 0px 6px 1px 1px #ccc;
                     height: 44px;
@@ -56,7 +56,7 @@ body{
                 }
 
                 .login-form-button{
-                    @include MyriadRegular(26pt);    
+                    @include MyriadRegular(26pt);
                     background-color: #57abde;
                     height: 60px;
                     border-radius: 25px;
@@ -67,13 +67,13 @@ body{
                     padding-top: 8px;
                 }
             }
-            
+
         }
     }
 
     .promotions-content{
         .title{
-            @include MyriadRegular(32pt);    
+            @include MyriadRegular(32pt);
             width: auto;
         }
 
@@ -83,7 +83,7 @@ body{
                 margin: 0px auto;
 
                 .title{
-                    @include MyriadRegular(16pt);    
+                    @include MyriadRegular(16pt);
                     font-weight: bold;
                 }
                 .icon{
@@ -106,33 +106,33 @@ body{
                     width: 50%;
                     background-color: rgba(107, 101, 101, 0.3);
                     text-align: left;
-                    
+
                     .slogan{
-                        margin-left: 5%;                       
-                        
+                        margin-left: 5%;
+
                         .purchased{
                             padding-left: 5%;
-                            background-image: linear-gradient(#827e7a99, #b7acb63d);    
-                            @include MyriadRegular(14pt);    
+                            background-image: linear-gradient(#827e7a99, #b7acb63d);
+                            @include MyriadRegular(14pt);
                         }
 
                         .valor{
                             padding-left: 5%;
-                            @include MyriadRegular(18pt);    
+                            @include MyriadRegular(18pt);
 
 
                         }
                         .deal{
-                            @include MyriadRegular(14pt);    
+                            @include MyriadRegular(14pt);
                             padding-left: 5%;
-                            background-image: linear-gradient(#f4971d, #fed532);    
+                            background-image: linear-gradient(#f4971d, #fed532);
                         }
                     }
                 }
 
-                .sell-button{     
+                .sell-button{
                     position: absolute;
-                    bottom:10%;                                         
+                    bottom:10%;
                     text-align: center;
                     left: auto;
                     right: auto;
@@ -141,9 +141,8 @@ body{
             }
             .description-item{
                 padding-left: 15px;
-                @include MyriadRegular(15pt);    
+                @include MyriadRegular(15pt);
                 text-align: justify;
-
             }
         }
     }
@@ -154,7 +153,7 @@ body{
             .control-dots{
                 .dot{
                     width: 30px;
-                    height: 30px;                                            
+                    height: 30px;
                     border: 3px solid #fff;
                     background: none;
                     opacity: 1;
@@ -163,8 +162,8 @@ body{
                 .selected{
                     opacity: 1;
                     background: #fff;
-                }   
-                
+                }
+
             }
         }
         .carousel-slider{
@@ -178,21 +177,21 @@ body{
                 width: 100%;
             }
         }
-    }    
-    
+    }
+
     .content-body{
         min-height: 800px;
-    }        
+    }
 
     .projects-content{
-        .donaciones-content{            
+        .donaciones-content{
             margin-top:30px;
             .title{
                 text-align: left;
                 margin-left: 0px;
             }
             .vertical-divider{
-                border-bottom: 3px solid $blue;            
+                border-bottom: 3px solid $blue;
                 margin-left: 0px;
                 height: 1px;
                 margin-bottom: 2%;
@@ -200,33 +199,33 @@ body{
             }
 
             .presentation-mode{
-                padding-top:10px;            
-                
+                padding-top:10px;
+
                 .conten-slide{
                     .my-slide-content{
                         .margen-slogan{
                             padding-bottom: 10%;
                         }
-                        .slogan-content{                            
+                        .slogan-content{
                             width: 50%;
                             background-color: rgba(241, 241, 241, 0.7);
                             text-align: left;
                             padding-left: 5%;
                             .slogan{
                                 .purchased{
-                                    @include QuickSandRegular(24pt);    
+                                    @include QuickSandRegular(24pt);
                                     font-weight: bold;
                                 }
                                 .valor{
-                                    @include MyriadRegular(36pt);    
+                                    @include MyriadRegular(36pt);
                                     color:#fff;
                                     opacity: 1;
                                 }
                                 .deal{
-                                    @include MyriadRegular(16pt);    
+                                    @include MyriadRegular(16pt);
                                     color:#fff;
                                     background-color:#1818d2;
-                                    height: 35px;                                    
+                                    height: 35px;
                                 }
                             }
                         }
@@ -240,46 +239,46 @@ body{
             .title{
                 margin-left: 0px;
             }
-            .vertical-divider{                
+            .vertical-divider{
                 width: 53%;
                 margin-left: 0px;
             }
         }
 
         .title{
-            @include MyriadRegular(36pt);    
+            @include MyriadRegular(36pt);
             width: auto;
             margin-left: 29%;
         }
         .vertical-divider{
-            border-bottom: 3px solid $blue;            
+            border-bottom: 3px solid $blue;
             margin: 0px auto;
             height: 1px;
             margin-bottom: 2%;
             width: 38%;
         }
 
-        .list-videos-projects{            
+        .list-videos-projects{
             background-color: #e8baa8;
             margin-bottom: 15px;
             div{
                 padding: 5px;
             }
         }
-        
+
     }
 
     .header-container{
-        .top-header{                
+        .top-header{
             background-repeat: repeat-x;
             height: 46px;
             background-size: cover;
-            
+
         }
 
         min-height: 128px;
-        background-color: #fff;            
-        
+        background-color: #fff;
+
         @include breakpoint(max-width 1166px) {
             padding-right: 5%;
             padding-left: 5%;
@@ -296,9 +295,9 @@ body{
                 }
             }
         }
-       
-        .menu-container{            
-            background-color:rgb(221, 242, 245);               
+
+        .menu-container{
+            background-color:rgb(221, 242, 245);
             .ant-menu-item{
                 @include QuickSandRegular(15pt);
                 vertical-align: middle;
@@ -317,7 +316,7 @@ body{
                 height: .9em;
             }
         }
-        
+
         .social-media{
             padding-left: 5%;
             margin-bottom: 8%;
@@ -345,28 +344,28 @@ body{
                 img{
                     margin: 0px auto;
                 }
-                
+
             }
-            
-        }          
-        
+
+        }
+
         .about-us{
-            padding-top: 2%;                
+            padding-top: 2%;
             .title{
                 color: #414243;
                 @include MyriadRegular(32pt);
-                font-weight: bold;                    
+                font-weight: bold;
                 border-bottom: solid 2px $blue;
                 width: auto;
-                margin: 0px auto;                    
-                display: -webkit-inline-box;      
-                margin-left: 35%;          
+                margin: 0px auto;
+                display: -webkit-inline-box;
+                margin-left: 35%;
             }
             .content{
                 @include MyriadRegular(13pt);
                 padding: 0 20%;
-                padding-top: 3%;     
-                text-align: justify;           
+                padding-top: 3%;
+                text-align: justify;
             }
         }
 
@@ -374,13 +373,13 @@ body{
             padding-top: 3%;
             @include MyriadRegular(11pt);
 
-            .ant-tabs-card-bar{       
-                .ant-tabs-tab{                    
+            .ant-tabs-card-bar{
+                .ant-tabs-tab{
                     background-image: linear-gradient(#ffffff);
                     border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;                    
+                    border-top-right-radius: 10px;
                     color:#000;
-                }                                      
+                }
             }
 
             .numbers{
@@ -388,12 +387,12 @@ body{
                     text-align: justify;
                     margin: 2%;
                 }
-                ol{               
-                    counter-reset: my-awesome-counter;    
+                ol{
+                    counter-reset: my-awesome-counter;
                     list-style: none;
                     li{
                         counter-increment: my-awesome-counter;
-                        padding-bottom: 25px;                        
+                        padding-bottom: 25px;
                         &:before{
                             content: counter(my-awesome-counter) ". ";
                             color:$blue;
@@ -402,7 +401,7 @@ body{
                             padding-left: 15%;
                             list-style-type: square;
                         }
-                    }                   
+                    }
                 }
             }
             .title{
@@ -410,7 +409,7 @@ body{
                 margin-bottom: 3%;
                 padding-left: 25px;
             }
-        }            
+        }
 
     }
     .nosotros-container{
@@ -514,10 +513,10 @@ body{
 
         }
         .button-buypromotion{
-            color: #fff;                        
+            color: #fff;
             background-color: #729FCB;
             @include MyriadRegular(19pt);
-            background-color: #729FCB;            
+            background-color: #729FCB;
             height: 48px;
             border-radius: 30px;
             width: 35%;
@@ -533,25 +532,25 @@ body{
         }
         .content{
             margin-top: 20px;
-            
-            .ant-tabs-card-bar{       
-                .ant-tabs-tab{                    
+
+            .ant-tabs-card-bar{
+                .ant-tabs-tab{
                     background-image: linear-gradient(#1f1b2d, #165a9d);
                     border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;                    
+                    border-top-right-radius: 10px;
                     color:#fff;
-                }                                      
+                }
             }
             .promotion-images{
-                .main-image{                
+                .main-image{
                     img{
                         height: 512px;
                         width: 100%;
                     }
-                    
+
                 }
                 .list-images{
-                    .list{                
+                    .list{
                         @include backgroundImage;
                         height: 148px;
                         margin: 10px;
@@ -588,14 +587,14 @@ body{
                     margin-bottom: 20px;
                     margin-top: 20px;
                     .botton-donate{
-                        color: #fff;                        
+                        color: #fff;
                         background-image: linear-gradient(#1f1b2d, #165a9d);
                         @include MyriadRegular(24pt);
                         height: 60px;
                         padding-top: 15px;
                         border-radius: 50px;
                         width: 100%;
-                    }                
+                    }
                 }
             }
         }
@@ -619,15 +618,15 @@ body{
             border: 1px solid gray;
         }
 
-        .botton-donate{            
-            color: #fff;                        
+        .botton-donate{
+            color: #fff;
             background-image: linear-gradient(#1f1b2d, #165a9d);
             @include MyriadRegular(24pt);
             height: 60px;
             padding-top: 15px;
             border-radius: 50px;
             width: 150px;
-        }  
+        }
     }
 
     .smile-content{
@@ -657,4 +656,3 @@ body{
     }
 
 }
-    

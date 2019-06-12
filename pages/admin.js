@@ -9,7 +9,6 @@ class Admin extends Component {
 
   componentDidMount = () => {
     const {auth} = this.props;
-    console.log(auth);
     if( !auth.token ||  !auth.user.id ){
       message.error('El usuario debe estar logeado.');
       Router.push('/login');      

@@ -17,10 +17,7 @@ class ConfirmationPay extends Component {
   }
   
   componentWillMount(){
-    const {tokenCard} = this.props;
-    if( !tokenCard ){
-     // this.props.createTokenCard();    
-    }
+    
   }
 
   componentDidMount() {
@@ -31,38 +28,12 @@ class ConfirmationPay extends Component {
         this.props.getPayment(parsedString.collection_id);
         this.props.getPromotion(parsedString.external_reference);
     }
-}
-
-  componentDidUpdate = ( prevProps ) =>{
-    if( !prevProps.giftCard && prevProps.giftCard !== this.props.giftCard ) {
-      message.success( this.props.giftCard.message );      
-    }
   }
-
-  handleCreateGiftCard = () => {
-    const {tokenCard} = this.props;
-    
-    const dataCard = {
-      phone_number:3127714046,
-      country_code:'+57',
-      email:"eryoher@gmail.com",
-      first_name:"Ericson Yohany",
-      last_name:"Hernandez",
-      amount:5000,
-      kind:"N",
-      currency:"COP"
-    }   
-    
-    this.props.createGiftCard(dataCard, tokenCard);
-  }
-
 
   render() {
-    const {tokenCard, giftCard, paymentConfirm, promotion} = this.props;
-    const disabled = (giftCard) ? true:false;
+    const {paymentConfirm, promotion} = this.props;
     return (
-        <Row>
-          <Layaout>
+        <Row>          
             {
               paymentConfirm && 
               <Row className={"confirmation-content"} >
@@ -94,8 +65,7 @@ class ConfirmationPay extends Component {
                   <Button href={'/promotions'} style={{marginTop:'25px'}} className={"botton-donate"}> Volver </Button>
                 </Col>
               </Row>
-            }
-          </Layaout>
+            }          
         </Row>
     )
   }

@@ -38,10 +38,7 @@ class AdminPromotions extends Component {
         title: "Cantidad",
         dataIndex: 'quantity',
         key: 'quantity',
-        width: 200,
-        render: (text, record) => {
-          return  this.renderQuantity(record);          
-        },
+        width: 200,       
         
       },
       {
